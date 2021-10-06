@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 2826045943153473731}
   - component: {fileID: 8357742388598187831}
   - component: {fileID: 7219052647972494453}
-  - component: {fileID: 4625194207331061593}
+  - component: {fileID: 3507698517451324299}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &4625194207331061593
+--- !u!114 &3507698517451324299
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,11 +250,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8887682791931727684}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6df9fa80ea0720646808909479ecca01, type: 3}
+  m_Script: {fileID: 11500000, guid: 89570357c51c3c54da152e1a873a0ea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 4
-  JumpForce: 400
+  JumpForce: 200
   MaxJumps: 1
   GroundSphere: {fileID: 3578216790120974454}
   GroundSphereRadius: 0.3
