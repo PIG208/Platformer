@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(MovementManager))]
 public class Player : Entity, InputControls.IPlayerActions, IMovable
@@ -46,4 +48,11 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
             this.Inventory.CurrentWeapon.Fire(new WeaponManager.FireContext(this, new Entity[] { }));
         }
     }
+    private void OnCollisionEnter2D(Collision2D other){
+        if(other.gameObject.tag == "Enemy"){
+            
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
 }
+
