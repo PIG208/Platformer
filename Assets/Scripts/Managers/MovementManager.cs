@@ -7,6 +7,8 @@ public class MovementManager : MonoBehaviour
     public float JumpForce = 200f;
     public int MaxJumps = 1;
 
+    public int Direction { get => (_xSpeed >= 0) ? 1 : -1; }
+
     // GroundCheck
     public GameObject GroundSphere;
     public float GroundSphereRadius = 0.3f;

@@ -6,28 +6,44 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(MovementManager))]
 public class Player : Entity, InputControls.IPlayerActions, IMovable
 {
-    public GameObject BulletPrefab;
-    public float BulletSpeed = 10f;
+    public float MaxFireInterval = 0.21f;
 
     private Rigidbody2D _rigidbody;
-    private int _direction = 1;
+    private bool _firing;
+    private float _firingTimeOut;
 
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _firingTimeOut = MaxFireInterval;
         BindManagers();
     }
 
     public void OnFire(InputAction.CallbackContext cb)
     {
-        GameObject bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
-        bullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(BulletSpeed * _direction, 0));
-        Destroy(bullet, 2f);
+        _firing = cb.performed;
     }
 
     public void OnMove(InputAction.CallbackContext cb)
     {
         Vector2 movement = cb.ReadValue<Vector2>();
         Movement.Move(movement);
+
+        Vector3 scale = this.transform.localScale;
+        this.transform.localScale = new Vector3(Movement.Direction, scale.y, scale.z);
+    }
+
+    private void Update()
+    {
+        if (_firingTimeOut > 0)
+        {
+            _firingTimeOut -= Time.deltaTime;
+        }
+
+        if (_firing && _firingTimeOut <= 0)
+        {
+            _firingTimeOut = MaxFireInterval;
+            this.Inventory.CurrentWeapon.Fire(new WeaponManager.FireContext(this, new Entity[] { }));
+        }
     }
 }

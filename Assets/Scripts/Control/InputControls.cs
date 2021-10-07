@@ -20,7 +20,7 @@ public class @InputControls : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Fire"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""e8b85dc1-a0fc-4b4d-b830-9e2a3a3d7e67"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -105,7 +105,7 @@ public class @InputControls : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Up"",
                     ""id"": ""573189ea-344b-42cb-be18-586a16c43024"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
@@ -149,8 +149,8 @@ public class @InputControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""447927a1-d5f5-457f-9860-f00c93b2ffc0"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Fire"",
