@@ -1,10 +1,9 @@
 using UnityEngine;
 
-/// <summary>This is the prototype interface for all weapons</summary>
+/// <summary>This is the prototype interface for all melee weapons</summary>
 public class Melee : BaseWeapon
 {
     public override string Type { get => "Melee"; }
 
-    public Melee(string name, Rarity rarity, float power, GameObject[] slots) : base(name, rarity, power, slots) { }
-    public override void OnFire() { }
+    public Melee(GameObject weaponPrefab) : base(weaponPrefab) { }
 }
