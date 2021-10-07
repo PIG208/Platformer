@@ -4,20 +4,18 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(MovementManager))]
-public class Player : MonoBehaviour, InputControls.IPlayerActions, IMovable
+public class Player : Entity, InputControls.IPlayerActions, IMovable
 {
     public GameObject BulletPrefab;
     public float BulletSpeed = 10f;
-    public MovementManager Movement { get => _movement; }
 
     private Rigidbody2D _rigidbody;
-    private MovementManager _movement;
     private int _direction = 1;
 
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _movement = GetComponent<MovementManager>();
+        BindManagers();
     }
 
     public void OnFire(InputAction.CallbackContext cb)
