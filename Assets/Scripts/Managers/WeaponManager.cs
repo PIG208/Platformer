@@ -6,20 +6,9 @@ public abstract class WeaponManager : MonoBehaviour
     public Rarity Rarity;
     public float Power;
     public GameObject[] Slots;
+    public Animator WeaponAnimator;
 
-    protected BaseWeapon Weapon;
+    public BaseWeapon Weapon;
 
     public abstract void Fire(FireContext fireContext);
-
-    public class FireContext
-    {
-        public readonly Player Player;
-        public readonly Entity[] SurroundingEnemies;
-
-        public FireContext(Player player, Entity[] enemies)
-        {
-            Player = player;
-            SurroundingEnemies = enemies;
-        }
-    }
 }

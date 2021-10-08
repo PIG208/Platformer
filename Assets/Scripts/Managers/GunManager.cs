@@ -4,11 +4,15 @@ using UnityEngine;
 public class GunManager : WeaponManager
 {
     public GameObject BulletPrefab;
+    public GameObject BulletSpawn;
     public float BulletSpeed;
 
     public override void Fire(FireContext fireContext)
     {
-        GameObject bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
+        // Invoke Fire event on the weapon
+        Weapon.RaiseFire(this, fireContext);
+
+        GameObject bullet = Instantiate(BulletPrefab, BulletSpawn.transform.position, transform.rotation);
         bullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(BulletSpeed * fireContext.Player.Movement.Direction, 0));
         Destroy(bullet, 2f);
     }

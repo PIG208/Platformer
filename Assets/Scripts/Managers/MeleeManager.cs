@@ -5,6 +5,7 @@ public class MeleeManager : WeaponManager
 {
     public override void Fire(FireContext fireContext)
     {
-        if (WeaponAnimator != null) WeaponAnimator.Play("Attack");
+        // Invoke Fire event on the weapon
+        Weapon.RaiseFire(this, fireContext);
     }
 }

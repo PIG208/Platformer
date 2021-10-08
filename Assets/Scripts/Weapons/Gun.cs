@@ -7,6 +7,5 @@ public class Gun : BaseWeapon
 
     public Gun(WeaponRegistry registry) : base(registry)
     {
-        GunManager gunManager = WeaponPrefab.GetComponent<GunManager>();
     }
 }

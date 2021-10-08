@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class BaseWeapon
@@ -14,6 +15,9 @@ public abstract class BaseWeapon
     /// <summary>The prefab object that contains a WeaponManager</summary>
     public GameObject WeaponPrefab { get => WeaponPrototype.GetWeaponPrefab(_weaponRegistry); }
 
+    public event Action<WeaponManager, FireContext> Fire;
+    public void RaiseFire(WeaponManager weaponManager, FireContext context) => Fire.Invoke(weaponManager, context);
+
     /// <summary>The type of the weapon</summary>
     public abstract string Type { get; }
 
@@ -29,11 +33,18 @@ public abstract class BaseWeapon
         WeaponManager weaponManager = WeaponPrefab.GetComponent<WeaponManager>();
         if (weaponManager is null)
         {
-            throw new System.ArgumentException("WeaponPrefab must have a weapon manager");
+            throw new ArgumentException("WeaponPrefab must have a weapon manager");
         }
 
         this._name = weaponManager.Name;
         this._rarity = weaponManager.Rarity;
         this._power = weaponManager.Power;
+        this.Fire += HandleFire;
+    }
+
+    public void HandleFire(WeaponManager weaponManager, FireContext context)
+    {
+        if (weaponManager.WeaponAnimator != null)
+            weaponManager.WeaponAnimator.Play("Attack");
     }
 }
