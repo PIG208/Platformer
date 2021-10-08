@@ -20,6 +20,7 @@ public class MovementManager : MonoBehaviour
     private float _xSpeed = 0;
     private int _remainingJumps;
     private int _direction = 1;
+    private bool _facingRight = true;
 
     private void Start()
     {
@@ -46,6 +47,11 @@ public class MovementManager : MonoBehaviour
             _direction = (_xSpeed > 0) ? 1 : -1;
         }
 
+        if (_direction != 0 && (_direction > 0 ^ _facingRight))
+        {
+            Flip();
+        }
+
         _grounded = GroundCheck();
 
         if (_grounded)
@@ -59,6 +65,12 @@ public class MovementManager : MonoBehaviour
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
             _rigidbody.AddForce(new Vector2(0, JumpForce));
         }
+    }
+
+    public void Flip()
+    {
+        _facingRight = !_facingRight;
+        transform.Rotate(new Vector3(0, 180f, 0));
     }
 
     public void AddImpluse(Vector2 movement)

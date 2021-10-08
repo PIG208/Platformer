@@ -32,8 +32,6 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
         Vector2 movement = cb.ReadValue<Vector2>();
         Movement.Move(movement);
 
-        Vector3 scale = this.transform.localScale;
-        this.transform.localScale = new Vector3(Movement.Direction, scale.y, scale.z);
         EntityAnimator.SetInteger("Speed", Movement.Direction * (int)movement.x);
     }
 
