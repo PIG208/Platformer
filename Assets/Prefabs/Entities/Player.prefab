@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 7219052647972494453}
   - component: {fileID: 3507698517451324299}
   - component: {fileID: 8781013566135023358}
+  - component: {fileID: 425946367}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -210,6 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxFireInterval: 0.21
+  playerHealthBar: {fileID: 0}
 --- !u!114 &7219052647972494453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,3 +308,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EquipementPosition: {fileID: 7918199733780969696}
   CurrentWeapon: {fileID: 0}
+--- !u!114 &425946367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8887682791931727684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a250b168767b9b48b09c1ba63268050, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0

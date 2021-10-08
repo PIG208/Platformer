@@ -14,11 +14,18 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
     private bool _firing;
     private float _firingTimeOut;
 
+    public PlayerHealthBar playerHealthBar;
+    private int maxHealth = 100;
+
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _firingTimeOut = MaxFireInterval;
         BindManagers();
+        
+        playerHealthBar = GameObject.FindWithTag("HealthBar").GetComponent<PlayerHealthBar>();
+        playerHealthBar.setSliderMaxHealth(maxHealth);
+        Health.setHealth(maxHealth);
     }
 
     public void OnFire(InputAction.CallbackContext cb)
@@ -50,8 +57,10 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
     }
     private void OnCollisionEnter2D(Collision2D other){
         if(other.gameObject.tag == "Enemy"){
-            
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Health.damage(10);
+            playerHealthBar.setHealth(Health.getHealth());
+            print("Took 5 damage. Current health:" + Health.getHealth());
+            // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
