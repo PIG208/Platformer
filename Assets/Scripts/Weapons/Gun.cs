@@ -4,11 +4,9 @@ using UnityEngine;
 public class Gun : BaseWeapon
 {
     public override string Type { get => "Gun"; }
-    private GameObject _bulletPrefab;
 
-    public Gun(GameObject weaponPrefab) : base(weaponPrefab)
+    public Gun(WeaponRegistry registry) : base(registry)
     {
-        GunManager gunManager = weaponPrefab.GetComponent<GunManager>();
-        _bulletPrefab = gunManager.BulletPrefab;
+        GunManager gunManager = WeaponPrefab.GetComponent<GunManager>();
     }
 }

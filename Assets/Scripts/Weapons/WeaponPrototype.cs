@@ -4,9 +4,14 @@ using UnityEngine;
 /// <summary>Provide a registry for all available weapon types</summary>
 public static class WeaponPrototype
 {
-    public static GameObject GetWeaponPrefabById(string id)
+    public static GameObject GetWeaponPrefab(string id)
     {
         return Resources.Load<GameObject>($"Weapons/{id}");
+    }
+
+    public static GameObject GetWeaponPrefab(WeaponRegistry registry)
+    {
+        return GetWeaponPrefab(GetWeaponId(registry));
     }
 
     public static string GetWeaponId(WeaponRegistry registry)
@@ -21,22 +26,16 @@ public static class WeaponPrototype
         throw new ArgumentException($"{registry} doesn't exist in the weapon registry");
     }
 
-    public static T GetWeapon<T>(string id) where T : BaseWeapon
+    public static T GetWeapon<T>(WeaponRegistry registry) where T : BaseWeapon
     {
-        GameObject weaponPrefab = GetWeaponPrefabById(id);
         if (typeof(T) == typeof(Melee))
         {
-            return (T)Convert.ChangeType(new Melee(weaponPrefab), typeof(T));
+            return (T)Convert.ChangeType(new Melee(registry), typeof(T));
         }
         else if (typeof(T) == typeof(Gun))
         {
-            return (T)Convert.ChangeType(new Gun(weaponPrefab), typeof(T));
+            return (T)Convert.ChangeType(new Gun(registry), typeof(T));
         }
-        throw new ArgumentException($"{id} is not a valid weapon");
-    }
-
-    public static T GetWeapon<T>(WeaponRegistry registry) where T : BaseWeapon
-    {
-        return GetWeapon<T>(GetWeaponId(registry));
+        throw new ArgumentException($"{registry} is not a valid weapon");
     }
 }

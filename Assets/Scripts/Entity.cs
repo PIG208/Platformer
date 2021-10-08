@@ -5,6 +5,7 @@ public class Entity : MonoBehaviour
     public MovementManager Movement { get => _movement; }
     public InventoryManager Inventory { get => _inventory; }
     public HealthManager Health { get => _health; }
+    public Animator EntityAnimator;
 
     private MovementManager _movement;
     private InventoryManager _inventory;

@@ -7,7 +7,7 @@ public class MovementManager : MonoBehaviour
     public float JumpForce = 200f;
     public int MaxJumps = 1;
 
-    public int Direction { get => (_xSpeed >= 0) ? 1 : -1; }
+    public int Direction { get => _direction; }
 
     // GroundCheck
     public GameObject GroundSphere;
@@ -19,6 +19,7 @@ public class MovementManager : MonoBehaviour
     private bool _grounded = false;
     private float _xSpeed = 0;
     private int _remainingJumps;
+    private int _direction = 1;
 
     private void Start()
     {
@@ -40,6 +41,10 @@ public class MovementManager : MonoBehaviour
     public void Move(Vector2 movement)
     {
         _xSpeed = movement.x * Speed;
+        if (_xSpeed != 0)
+        {
+            _direction = (_xSpeed > 0) ? 1 : -1;
+        }
 
         _grounded = GroundCheck();
 
