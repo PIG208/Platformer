@@ -35,6 +35,20 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
         EntityAnimator.SetInteger("Speed", Movement.Direction * (int)movement.x);
     }
 
+    public void OnSwitchWeapon(InputAction.CallbackContext cb)
+    {
+        bool scrollUp = (cb.ReadValue<Vector2>().y > 0);
+        if (scrollUp)
+            Inventory.PrevWeapon();
+        else
+            Inventory.NextWeapon();
+    }
+
+    public void OnSwitchWeapon2(InputAction.CallbackContext cb)
+    {
+        Inventory.SwitchWeapon(int.Parse(cb.control.name) - 1);
+    }
+
     private void Update()
     {
         if (_firingTimeOut > 0)
@@ -45,7 +59,7 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
         if (_firing && _firingTimeOut <= 0)
         {
             _firingTimeOut = MaxFireInterval;
-            this.Inventory.CurrentWeapon.Fire(new FireContext(this, new Entity[] { }));
+            this.Inventory.CurrentWeaponManager.Fire(new FireContext(this, new Entity[] { }));
         }
     }
 

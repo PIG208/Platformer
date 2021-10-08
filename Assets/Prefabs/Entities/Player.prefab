@@ -320,6 +320,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0c4ab068-4c7b-4885-92cb-2115f0d1f41b
     m_ActionName: Player/Movement[/Keyboard/rightArrow,/Keyboard/leftArrow,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8357742388598187831}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnSwitchWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 016b6e9e-2dce-4c6f-ace3-1fe16aba3a33
+    m_ActionName: Player/SwitchWeapon[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8357742388598187831}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnSwitchWeapon2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5a82c3a7-5f07-4559-af4c-da9f6e48b971
+    m_ActionName: Player/SwitchWeapon2[/Keyboard/1,/Keyboard/2,/Keyboard/3]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard and Mouse
   m_DefaultActionMap: Player
@@ -358,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EquipementPosition: {fileID: 7918199733780969696}
-  CurrentWeapon: {fileID: 0}
+  CurrentWeaponManager: {fileID: 0}
 --- !u!114 &425946367
 MonoBehaviour:
   m_ObjectHideFlags: 0
