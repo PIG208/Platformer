@@ -60,7 +60,9 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
             Health.damage(10);
             playerHealthBar.setHealth(Health.getHealth());
             print("Took 5 damage. Current health:" + Health.getHealth());
-            // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if(Health.getHealth() ==0){
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
     }
 }
