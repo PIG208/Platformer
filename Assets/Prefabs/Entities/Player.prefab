@@ -263,7 +263,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityAnimator: {fileID: 8897602875081493647}
   MaxFireInterval: 0.21
-  playerHealthBar: {fileID: 0}
 --- !u!114 &7219052647972494453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,4 +371,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a250b168767b9b48b09c1ba63268050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  MaxHealth: 100
+  HealthBar: {fileID: 0}

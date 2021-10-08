@@ -1,38 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class HealthManager : MonoBehaviour{
+public class HealthManager : MonoBehaviour
+{
 
-    public int health;
-    int maxHealth;
+    public int Health { get; set; }
+    public int MaxHealth;
+    public Slider HealthBar;
 
-    public HealthManager(int health){
-        this.health = health;
-        this.maxHealth = health;
+    private void Start()
+    {
+        Health = MaxHealth;
+        UpdateHealthBar();
     }
 
-    public int getHealth(){
-        return health;
+    public void Damage(int damage)
+    {
+        Health = Mathf.Clamp(Health - damage, 0, MaxHealth);
+        UpdateHealthBar();
     }
 
-    public void setHealth(int health){
-        this.health = health;
+    public void Heal(int heal)
+    {
+        this.Damage(-heal);
     }
 
-    public void damage(int health){
-        if(this.health - health < 0){
-            this.health = 0;
-        } else {
-            this.health -= health;
-        }
-    }
-
-    public void heal(int health){
-        if(this.health + health > maxHealth){
-            this.health = 100;
-        } else {
-            this.health += health;        
-        }
+    public void UpdateHealthBar()
+    {
+        if (HealthBar is null) return;
+        HealthBar.maxValue = MaxHealth;
+        HealthBar.value = Health;
     }
 }

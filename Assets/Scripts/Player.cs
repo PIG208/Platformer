@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(MovementManager))]
+[RequireComponent(typeof(HealthManager))]
 public class Player : Entity, InputControls.IPlayerActions, IMovable
 {
     public float MaxFireInterval = 0.21f;
@@ -14,18 +15,11 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
     private bool _firing;
     private float _firingTimeOut;
 
-    public PlayerHealthBar playerHealthBar;
-    private int maxHealth = 100;
-
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _firingTimeOut = MaxFireInterval;
         BindManagers();
-
-        playerHealthBar = GameObject.FindWithTag("HealthBar").GetComponent<PlayerHealthBar>();
-        playerHealthBar.setSliderMaxHealth(maxHealth);
-        Health.setHealth(maxHealth);
     }
 
     public void OnFire(InputAction.CallbackContext cb)
@@ -56,14 +50,14 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
             this.Inventory.CurrentWeapon.Fire(new WeaponManager.FireContext(this, new Entity[] { }));
         }
     }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Health.damage(10);
-            playerHealthBar.setHealth(Health.getHealth());
-            print("Took 5 damage. Current health:" + Health.getHealth());
-            if(Health.getHealth() ==0){
+            this.Health.Damage(10);
+            if (Health.Health == 0)
+            {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
