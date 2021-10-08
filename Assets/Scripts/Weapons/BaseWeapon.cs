@@ -12,7 +12,7 @@ public abstract class BaseWeapon
     /// <summary>The power factor of the weapon</summary>
     public float Power { get => _power; }
     /// <summary>The prefab object that contains a WeaponManager</summary>
-    public GameObject WeaponPrefab { get => _weaponPrefab; }
+    public GameObject WeaponPrefab { get => WeaponPrototype.GetWeaponPrefab(_weaponRegistry); }
 
     /// <summary>The type of the weapon</summary>
     public abstract string Type { get; }
@@ -20,12 +20,13 @@ public abstract class BaseWeapon
     private string _name;
     private Rarity _rarity;
     private float _power;
-    private GameObject _weaponPrefab;
+    private WeaponRegistry _weaponRegistry;
 
     /// <summary>Initialize a weapon from a weapon maanger</summary>
-    public BaseWeapon(GameObject weaponPrefab)
+    public BaseWeapon(WeaponRegistry registry)
     {
-        WeaponManager weaponManager = weaponPrefab.GetComponent<WeaponManager>();
+        _weaponRegistry = registry;
+        WeaponManager weaponManager = WeaponPrefab.GetComponent<WeaponManager>();
         if (weaponManager is null)
         {
             throw new System.ArgumentException("WeaponPrefab must have a weapon manager");
@@ -34,6 +35,5 @@ public abstract class BaseWeapon
         this._name = weaponManager.Name;
         this._rarity = weaponManager.Rarity;
         this._power = weaponManager.Power;
-        this._weaponPrefab = weaponPrefab;
     }
 }

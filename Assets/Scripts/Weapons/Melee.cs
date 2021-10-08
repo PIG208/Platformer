@@ -5,5 +5,5 @@ public class Melee : BaseWeapon
 {
     public override string Type { get => "Melee"; }
 
-    public Melee(GameObject weaponPrefab) : base(weaponPrefab) { }
+    public Melee(WeaponRegistry registry) : base(registry) { }
 }
