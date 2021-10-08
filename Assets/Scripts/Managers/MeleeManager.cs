@@ -5,6 +5,6 @@ public class MeleeManager : WeaponManager
 {
     public override void Fire(FireContext fireContext)
     {
-        throw new System.NotImplementedException();
+        if (WeaponAnimator != null) WeaponAnimator.Play("Attack");
     }
 }
