@@ -5,9 +5,9 @@ public class CommonFireModifer : IModifier<BaseWeapon>
         weapon.Fire += HandleFireAnimation;
     }
 
-    public void HandleFireAnimation(WeaponManager weaponManager, FireContext context)
+    public void HandleFireAnimation(object weapon, BaseWeapon.FireEventArgs<WeaponManager> e)
     {
-        if (weaponManager.WeaponAnimator != null)
-            weaponManager.WeaponAnimator.Play("Attack");
+        if (e.WeaponManager.WeaponAnimator != null)
+            e.WeaponManager.WeaponAnimator.Play("Attack");
     }
 }

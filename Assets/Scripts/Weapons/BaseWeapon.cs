@@ -17,8 +17,10 @@ public abstract class BaseWeapon
     public GameObject WeaponPrefab { get => WeaponPrototype.GetWeaponPrefab(_weaponRegistry); }
     public List<IModifier<BaseWeapon>> GeneralModifiers = new List<IModifier<BaseWeapon>> { new CommonFireModifer() };
 
-    public event Action<WeaponManager, FireContext> Fire;
-    public void RaiseFire(WeaponManager weaponManager, FireContext context) => Fire.Invoke(weaponManager, context);
+    public event EventHandler<FireEventArgs<WeaponManager>> Fire;
+    public void RaiseFire(WeaponManager weaponManager, FireContext context) => Fire?.Invoke(this, new FireEventArgs<WeaponManager>(weaponManager, context));
+    public event Action<BaseWeapon, WeaponManager> Update;
+    public void RaiseUpdate(WeaponManager weaponManager) => Update?.Invoke(this, weaponManager);
 
     /// <summary>The type of the weapon</summary>
     public abstract string Type { get; }
@@ -52,5 +54,17 @@ public abstract class BaseWeapon
     {
         GeneralModifiers.Add(modifier);
         modifier.Register(this);
+    }
+
+    public class FireEventArgs<T> : EventArgs where T : WeaponManager
+    {
+        public T WeaponManager;
+        public FireContext FireContext;
+
+        public FireEventArgs(T weaponManager, FireContext fireContext)
+        {
+            WeaponManager = weaponManager;
+            FireContext = fireContext;
+        }
     }
 }
