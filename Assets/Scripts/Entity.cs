@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public abstract class Entity : MonoBehaviour
 {
     public MovementManager Movement { get => _movement; }
     public InventoryManager Inventory { get => _inventory; }
     public HealthManager Health { get => _health; }
     public Animator EntityAnimator;
+    public virtual Group Group { get => Group.FriendlyToPlayer & Group.FriendlyToEnemy; }
 
     private MovementManager _movement;
     private InventoryManager _inventory;

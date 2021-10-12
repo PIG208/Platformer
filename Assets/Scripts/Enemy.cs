@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Entity
 {
     public float speed = 2;
+    public override Group Group { get => Group.FriendlyToEnemy; }
     private Transform target;
 
     // Start is called before the first frame update
@@ -16,12 +17,6 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position,target.position,speed*Time.deltaTime);
-    }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.gameObject.tag == "Bullet"){
-            Destroy(gameObject); 
-        }
+        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
 }

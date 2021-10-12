@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class Player : Entity, InputControls.IPlayerActions, IMovable
 {
     public float MaxFireInterval = 0.21f;
+    public override Group Group { get => Group.FriendlyToPlayer; }
 
     private Rigidbody2D _rigidbody;
     private bool _firing;
