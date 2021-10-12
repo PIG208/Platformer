@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BaseWeapon
@@ -14,6 +15,7 @@ public abstract class BaseWeapon
     public float Power { get => _power; }
     /// <summary>The prefab object that contains a WeaponManager</summary>
     public GameObject WeaponPrefab { get => WeaponPrototype.GetWeaponPrefab(_weaponRegistry); }
+    public List<IModifier<BaseWeapon>> GeneralModifiers = new List<IModifier<BaseWeapon>> { new CommonFireModifer() };
 
     public event Action<WeaponManager, FireContext> Fire;
     public void RaiseFire(WeaponManager weaponManager, FireContext context) => Fire.Invoke(weaponManager, context);
@@ -39,12 +41,16 @@ public abstract class BaseWeapon
         this._name = weaponManager.Name;
         this._rarity = weaponManager.Rarity;
         this._power = weaponManager.Power;
-        this.Fire += HandleFire;
+
+        foreach (IModifier<BaseWeapon> modifier in GeneralModifiers)
+        {
+            modifier.Register(this);
+        }
     }
 
-    public void HandleFire(WeaponManager weaponManager, FireContext context)
+    public void RegisterModifier(IModifier<BaseWeapon> modifier)
     {
-        if (weaponManager.WeaponAnimator != null)
-            weaponManager.WeaponAnimator.Play("Attack");
+        GeneralModifiers.Add(modifier);
+        modifier.Register(this);
     }
 }

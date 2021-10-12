@@ -13,7 +13,9 @@ public class GunManager : WeaponManager
         Weapon.RaiseFire(this, fireContext);
 
         GameObject bullet = Instantiate(BulletPrefab, BulletSpawn.transform.position, transform.rotation);
+        BulletManager manager = bullet.GetComponent<BulletManager>();
         bullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(BulletSpeed * fireContext.Player.Movement.Direction, 0));
+        ((Gun)Weapon).RaiseBulletCreated(GetWeapon<Gun>(), new BulletManager[] { manager });
         Destroy(bullet, 2f);
     }
 }

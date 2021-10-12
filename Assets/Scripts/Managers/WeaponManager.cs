@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class WeaponManager : MonoBehaviour
@@ -11,4 +12,10 @@ public abstract class WeaponManager : MonoBehaviour
     public BaseWeapon Weapon;
 
     public abstract void Fire(FireContext fireContext);
+    public T GetWeapon<T>() where T : BaseWeapon
+    {
+        if (typeof(T).Name != Weapon.Type)
+            throw new ArgumentException($"{typeof(T).Name} does not match the type of the weapon");
+        return (T)Weapon;
+    }
 }
