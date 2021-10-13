@@ -6,6 +6,7 @@ public static class Constants
     public const float DamageFactor = 10f;
 
     public const float BaseAttackInterval = 0.22f;
+    public const float SwitchWeaponInterval = 0.02f;
 
     public static float DropRate(Rarity rarity)
     {
