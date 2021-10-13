@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseWeapon
+public abstract class BaseWeapon : Modifiable<BaseWeapon>
 {
     /* Name, Rarity, Power, and Slots are predefined information
     provided in the weapon prefab. These attributes should not be
@@ -19,6 +19,8 @@ public abstract class BaseWeapon
 
     public event EventHandler<FireEventArgs<WeaponManager>> Fire;
     public void RaiseFire(WeaponManager weaponManager, FireContext context) => Fire?.Invoke(this, new FireEventArgs<WeaponManager>(weaponManager, context));
+    public event Action<BaseWeapon, WeaponManager> Start;
+    public void RaiseStart(WeaponManager weaponManager) => Start?.Invoke(this, weaponManager);
     public event Action<BaseWeapon, WeaponManager> Update;
     public void RaiseUpdate(WeaponManager weaponManager) => Update?.Invoke(this, weaponManager);
 

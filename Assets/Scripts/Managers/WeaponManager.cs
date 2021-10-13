@@ -12,6 +12,11 @@ public abstract class WeaponManager : MonoBehaviour
 
     private float _timeToFire = 0;
 
+    private void Start()
+    {
+        Weapon.RaiseStart(this);
+    }
+
     private void Update()
     {
         Weapon.RaiseUpdate(this);

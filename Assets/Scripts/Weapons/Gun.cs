@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>This is the prototype interface for all melee weapons</summary>
-public class Gun : BaseWeapon
+public class Gun : BaseWeapon, Modifiable<Gun>
 {
     public override string Type { get => "Gun"; }
     public List<IModifier<Gun>> GunModifiers = new List<IModifier<Gun>> { new CommonBulletModifier() };

@@ -20,7 +20,8 @@ class CommonBulletModifier : IModifier<Gun>
         if ((e.Other.Group & bullet.Group) == 0)
         {
             Debug.Log("Destroyed");
-            GameObject.Destroy(e.Other);
+            GameObject.Destroy(e.Other.gameObject);
+            GameObject.Destroy(bullet);
         }
     }
 
@@ -32,6 +33,5 @@ class CommonBulletModifier : IModifier<Gun>
         e.BulletManagers.Add(bullet);
 
         bullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(e.WeaponManager.BulletSpeed * e.FireContext.Player.Movement.Direction, 0));
-        GameObject.Destroy(bullet, 2);
     }
 }
