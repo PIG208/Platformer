@@ -8,8 +8,14 @@ public class BulletManager : MonoBehaviour
     public Group Group;
     public GameObject Target;
     public bool Homing = false;
+    public float LifeTime = 2f;
 
     public event EventHandler<BulletCollideArgs> CollideEntity;
+
+    private void Start()
+    {
+        Destroy(this.gameObject, LifeTime);
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
