@@ -13,7 +13,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
-        Weapons = new BaseWeapon[] { WeaponPrototype.GetWeapon<Gun>(WeaponRegistry.Pistol), WeaponPrototype.GetWeapon<Melee>(WeaponRegistry.Knife) };
+        Weapons = new BaseWeapon[] { WeaponPrototype.GetWeapon<Gun>(WeaponRegistry.Pistol), WeaponPrototype.GetWeapon<Melee>(WeaponRegistry.Knife), WeaponPrototype.GetWeapon<Gun>(WeaponRegistry.Rifle) };
 
         NextWeapon();
     }
