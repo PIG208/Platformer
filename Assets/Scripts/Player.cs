@@ -63,6 +63,12 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
             this.Inventory.CurrentWeaponManager.Fire(new FireContext(this, new Entity[] { }));
         }
     }
+    private void FixedUpdate() 
+    {
+        if(transform.position.y<-20){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -75,5 +81,7 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
             }
         }
     }
+
+
 }
 
