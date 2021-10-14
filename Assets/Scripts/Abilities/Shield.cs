@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-    public bool active = true;
+    public static bool active = true;
     private SpriteRenderer _SpriteRenderer;
 
     void Start(){

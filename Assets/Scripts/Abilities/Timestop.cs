@@ -18,7 +18,8 @@ public class Timestop : MonoBehaviour
                 enemy.GetComponent<AIManager>().enabled = false;
                 enemy.GetComponent<Animator>().enabled = false;
             }
-        } else if (Input.GetKeyDown(KeyCode.Q) && frozen)
+        } 
+        else if (Input.GetKeyDown(KeyCode.Q) && frozen)
         {
             frozen = false;
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
