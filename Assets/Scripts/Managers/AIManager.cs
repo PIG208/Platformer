@@ -6,6 +6,7 @@ using UnityEngine;
 public class AIManager : MonoBehaviour
 {
     MovementManager _movement;
+    public float distance;
 
     private void Start()
     {
@@ -13,8 +14,20 @@ public class AIManager : MonoBehaviour
     }
 
     private void Update()
-    {
-        Vector2 direction = LevelManager.CurrentLevelManager.Player.transform.position - transform.position;
-        _movement.Move(direction.normalized);
+    {   
+        distance = Vector2.Distance(LevelManager.CurrentLevelManager.Player.transform.position, transform.position);
+        if(distance<5){
+            _movement.Speed = 4f;
+            Vector2 direction = LevelManager.CurrentLevelManager.Player.transform.position - transform.position;
+            _movement.Move(direction.normalized);
+        }
+        else{
+            _movement.Speed = 0;
+            Vector2 direction;
+            direction.x = 0;
+            direction.y = 0;
+            _movement.Move(direction.normalized);
+        }
+        
     }
 }

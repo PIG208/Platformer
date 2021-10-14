@@ -6,4 +6,5 @@ using UnityEngine;
 public class Enemy : Entity
 {
     public override Group Group { get => Group.FriendlyToEnemy; }
+
 }
