@@ -30,7 +30,7 @@ public class MovementManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rigidbody.velocity = new Vector2(_xSpeed, _rigidbody.velocity.y);
+        _rigidbody.position += new Vector2(_xSpeed * Time.deltaTime, 0);
     }
 
     public bool GroundCheck()
