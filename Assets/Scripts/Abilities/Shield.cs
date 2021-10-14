@@ -18,7 +18,7 @@ public class Shield : MonoBehaviour
 
     // Knockback works on things tagges as enemy
     // But not for the enemies we have
-    // Might be because of the AI?
+    // Might be because of the AI? It immediately moves it after knockback
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy" && active)
