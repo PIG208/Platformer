@@ -24,6 +24,8 @@ public static class WeaponPrototype
                 return "Pistol";
             case WeaponRegistry.Rifle:
                 return "Rifle";
+            case WeaponRegistry.Bow:
+                return "Bow";
         }
         throw new ArgumentException($"{registry} doesn't exist in the weapon registry");
     }
