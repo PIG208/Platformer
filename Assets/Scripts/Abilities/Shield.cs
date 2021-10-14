@@ -7,7 +7,8 @@ public class Shield : MonoBehaviour
     public static bool active = true;
     private SpriteRenderer _SpriteRenderer;
 
-    void Start(){
+    void Start()
+    {
         _SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -22,9 +23,9 @@ public class Shield : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy" && active)
-        {   
+        {
             Rigidbody2D enemy = other.GetComponent<Rigidbody2D>();
-            enemy.AddForce(new Vector2(-enemy.velocity.x + 1, Mathf.Abs(enemy.velocity.y) + 1), ForceMode2D.Impulse);
+            enemy.AddForce((enemy.position - (Vector2)transform.position).normalized * 50, ForceMode2D.Impulse);
             active = false;
         }
     }
