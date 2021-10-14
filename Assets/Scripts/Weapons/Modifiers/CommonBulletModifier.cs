@@ -14,7 +14,7 @@ class CommonBulletModifier : IModifier<Gun>
         return bullet.GetComponent<BulletManager>();
     }
 
-    public void HandleBulletCollide(object sender, BulletManager.BulletCollideArgs e)
+    public void HandleBulletCollided(object sender, BulletManager.BulletCollideArgs e)
     {
         BulletManager bullet = ((BulletManager)sender);
         if ((e.Other.Group & bullet.Group) == 0)
@@ -28,7 +28,7 @@ class CommonBulletModifier : IModifier<Gun>
     public void HandleBulletCreate(object sender, Gun.BulletEventArgs e)
     {
         BulletManager bullet = CreateBullet(e.WeaponManager);
-        bullet.CollideEntity += HandleBulletCollide;
+        bullet.CollidedEntity += HandleBulletCollided;
 
         e.BulletManagers.Add(bullet);
 

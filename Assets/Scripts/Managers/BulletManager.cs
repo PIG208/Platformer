@@ -11,6 +11,7 @@ public class BulletManager : MonoBehaviour
     public float LifeTime = 2f;
 
     public event EventHandler<BulletCollideArgs> CollideEntity;
+    public event EventHandler<BulletCollideArgs> CollidedEntity;
 
     private void Start()
     {
@@ -20,9 +21,10 @@ public class BulletManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Entity otherEntity = other.gameObject.GetComponent<Entity>();
+        CollideEntity?.Invoke(this, new BulletCollideArgs(otherEntity));
         if (otherEntity != null)
         {
-            CollideEntity?.Invoke(this, new BulletCollideArgs(otherEntity));
+            CollidedEntity?.Invoke(this, new BulletCollideArgs(otherEntity));
         }
     }
 
