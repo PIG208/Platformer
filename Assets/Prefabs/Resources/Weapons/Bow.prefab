@@ -182,7 +182,7 @@ MonoBehaviour:
   Power: 1
   Slots: []
   WeaponAnimator: {fileID: 5041516430665830774}
-  FireInterval: 4
+  FireInterval: 0.9
   BulletPrefab: {fileID: 2533461525435417322, guid: 116a7f4fcd31d7f45816b513f0afcb6a, type: 3}
   BulletSpawn: {fileID: 5043091291113767606}
   BulletSpeed: 500

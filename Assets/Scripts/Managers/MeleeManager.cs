@@ -5,6 +5,8 @@ public class MeleeManager : WeaponManager
 {
     public override void Fire(FireContext fireContext)
     {
+        if (!CanFire()) return;
+
         base.Fire(fireContext);
         // Invoke Fire event on the weapon
         Weapon.RaiseFire(this, fireContext);

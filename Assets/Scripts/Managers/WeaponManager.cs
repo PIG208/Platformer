@@ -27,9 +27,14 @@ public abstract class WeaponManager : MonoBehaviour
 
     public virtual void Fire(FireContext fireContext)
     {
-        if (_timeToFire > 0) return;
+        if (!CanFire()) return;
 
         _timeToFire = FireInterval;
+    }
+
+    public bool CanFire()
+    {
+        return _timeToFire <= 0;
     }
 
     public T GetWeapon<T>() where T : BaseWeapon
