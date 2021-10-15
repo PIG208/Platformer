@@ -65,7 +65,7 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
     }
     private void FixedUpdate() 
     {
-        if(transform.position.y<-20){
+        if(transform.position.y<-30){
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
