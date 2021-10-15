@@ -1,6 +1,5 @@
 using System;
 
-[Flags]
 public enum Group
 {
     HostileToAll = 0,

@@ -1,12 +1,13 @@
+using System.Collections.Generic;
 
 public class FireContext
 {
     public readonly Player Player;
-    public readonly Entity[] SurroundingEnemies;
+    public readonly IEnumerable<Entity> SurroundingTargets;
 
-    public FireContext(Player player, Entity[] enemies)
+    public FireContext(Player player, IEnumerable<Entity> targets)
     {
         Player = player;
-        SurroundingEnemies = enemies;
+        SurroundingTargets = targets;
     }
 }

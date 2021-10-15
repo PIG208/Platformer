@@ -17,6 +17,7 @@ public class InventoryManager : MonoBehaviour
     {
         _lastSwitch = SwitchInterval;
         Weapons = new BaseWeapon[] { WeaponPrototype.GetWeapon<Gun>(WeaponRegistry.Pistol), WeaponPrototype.GetWeapon<Melee>(WeaponRegistry.Knife), WeaponPrototype.GetWeapon<Gun>(WeaponRegistry.Rifle), WeaponPrototype.GetWeapon<Gun>(WeaponRegistry.Bow) };
+        ((Gun)Weapons[0]).RegisterModifier(new MissileModifier());
 
         NextWeapon();
     }

@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 9072475301913435996}
   - component: {fileID: 9072475301913435997}
   - component: {fileID: 8018214546386786959}
+  - component: {fileID: -4659931551161434420}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -178,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95556f2f529954ea2b0e0c371bc21961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EntityAnimator: {fileID: 0}
+  EntityAnimator: {fileID: 8018214546386786959}
 --- !u!114 &9072475301913435996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9a68cc51d9377f409c80bd9ad89833c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 0
 --- !u!95 &8018214546386786959
 Animator:
   serializedVersion: 3
@@ -230,3 +232,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-4659931551161434420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9072475301913435995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a250b168767b9b48b09c1ba63268050, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 11
+  HealthBar: {fileID: 0}

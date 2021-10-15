@@ -60,12 +60,13 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
         if (_firing && _firingTimeOut <= 0)
         {
             _firingTimeOut = MaxFireInterval;
-            this.Inventory.CurrentWeaponManager.Fire(new FireContext(this, new Entity[] { }));
+            this.Inventory.CurrentWeaponManager.Fire(new FireContext(this, LevelManager.CurrentLevelManager.Enemies));
         }
     }
-    private void FixedUpdate() 
+    private void FixedUpdate()
     {
-        if(transform.position.y<-30){
+        if (transform.position.y < -30)
+        {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }

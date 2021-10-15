@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +9,10 @@ public class HealthManager : MonoBehaviour
     public int MaxHealth;
     public Slider HealthBar;
 
+    public event Action<HealthManager> Die;
+
+    private bool isDead;
+
     private void Start()
     {
         Health = MaxHealth;
@@ -18,7 +21,14 @@ public class HealthManager : MonoBehaviour
 
     public void Damage(int damage)
     {
+        if (isDead) return;
+
         Health = Mathf.Clamp(Health - damage, 0, MaxHealth);
+        if (Health <= 0)
+        {
+            Die?.Invoke(this);
+            isDead = true;
+        };
         UpdateHealthBar();
     }
 

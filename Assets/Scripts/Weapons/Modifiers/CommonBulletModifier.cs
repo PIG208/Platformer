@@ -19,9 +19,7 @@ class CommonBulletModifier : IModifier<Gun>
         BulletManager bullet = ((BulletManager)sender);
         if ((e.Other.Group & bullet.Group) == 0)
         {
-            Debug.Log("Destroyed");
-            GameObject.Destroy(e.Other.gameObject);
-            GameObject.Destroy(bullet);
+            e.Other.GetComponent<HealthManager>().Damage((int)bullet.damage);
         }
     }
 

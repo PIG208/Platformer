@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class BulletManager : MonoBehaviour
 {
     public float damage;
@@ -9,13 +10,25 @@ public class BulletManager : MonoBehaviour
     public GameObject Target;
     public bool Homing = false;
     public float LifeTime = 2f;
+    public float Speed;
 
     public event EventHandler<BulletCollideArgs> CollideEntity;
     public event EventHandler<BulletCollideArgs> CollidedEntity;
 
+    private Rigidbody2D _rb;
+
     private void Start()
     {
+        _rb = GetComponent<Rigidbody2D>();
         Destroy(this.gameObject, LifeTime);
+    }
+
+    private void Update()
+    {
+        if (Target != null)
+        {
+            _rb.AddForce((Vector2)(Target.transform.position - transform.position) * Speed * Time.deltaTime);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
