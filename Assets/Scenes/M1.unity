@@ -14771,6 +14771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 293317083}
+  Enemies: []
 --- !u!4 &141656334
 Transform:
   m_ObjectHideFlags: 0
@@ -15433,7 +15434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8884826311832857966, guid: 731f52178ea321c47a94eb118c6db0f7, type: 3}
       propertyPath: difficulty
-      value: 77
+      value: M
       objectReference: {fileID: 0}
     - target: {fileID: 8884826311832857966, guid: 731f52178ea321c47a94eb118c6db0f7, type: 3}
       propertyPath: levelToLoad
