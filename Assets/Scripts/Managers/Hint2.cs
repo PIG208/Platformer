@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HintManager : MonoBehaviour
+public class Hint2 : MonoBehaviour
 {
     public Text Hint;
 
@@ -19,7 +19,7 @@ public class HintManager : MonoBehaviour
         
         }
         if(other.gameObject.tag=="Player"){
-            Hint.text = "Press Q or Left Shift";
+            Hint.text = "Use Scroll Wheel";
             StartCoroutine(Wait());
         }
     }
