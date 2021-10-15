@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class NextLevel : MonoBehaviour
 {
-    public int levelToLoad = 1;
-    public char difficulty = 'E';
+    public string levelToLoad = "1";
+    public string difficulty = "E";
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Player"){
