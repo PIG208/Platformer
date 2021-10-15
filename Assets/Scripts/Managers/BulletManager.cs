@@ -11,6 +11,7 @@ public class BulletManager : MonoBehaviour
     public bool Homing = false;
     public float LifeTime = 2f;
     public float Speed;
+    public float AngularSpeed;
 
     public event EventHandler<BulletCollideArgs> CollideEntity;
     public event EventHandler<BulletCollideArgs> CollidedEntity;
@@ -23,11 +24,13 @@ public class BulletManager : MonoBehaviour
         Destroy(this.gameObject, LifeTime);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (Target != null)
+        if (Target != null && Homing)
         {
-            _rb.AddForce((Vector2)(Target.transform.position - transform.position) * Speed * Time.deltaTime);
+            float rotateAmount = Vector3.Cross(((Vector2)Target.transform.position - _rb.position).normalized, transform.right).z;
+            _rb.angularVelocity = -AngularSpeed * rotateAmount;
+            _rb.velocity = transform.right * Speed;
         }
     }
 

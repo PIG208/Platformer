@@ -20,6 +20,7 @@ class CommonBulletModifier : IModifier<Gun>
         if ((e.Other.Group & bullet.Group) == 0)
         {
             e.Other.GetComponent<HealthManager>().Damage((int)bullet.damage);
+            GameObject.Destroy(bullet.gameObject);
         }
     }
 
