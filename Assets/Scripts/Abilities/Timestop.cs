@@ -8,7 +8,7 @@ public class Timestop : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && !frozen)
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton4) && !frozen)
         {
             frozen = true;
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -20,7 +20,7 @@ public class Timestop : MonoBehaviour
                 enemy.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             }
         } 
-        else if (Input.GetKeyDown(KeyCode.Q) && frozen)
+        else if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton4) && frozen)
         {
             frozen = false;
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");

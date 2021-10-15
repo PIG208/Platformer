@@ -19,7 +19,7 @@ public class Dash : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift) && !isDashing){
+        if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton5) && !isDashing){
             isDashing = true;
             StartCoroutine(dash());
         }
