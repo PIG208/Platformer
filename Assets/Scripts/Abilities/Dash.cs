@@ -6,6 +6,7 @@ public class Dash : MonoBehaviour
 {
 
     Rigidbody2D _rigidbody;
+    MovementManager  _movementmanager;
     private bool isDashing = false;
     public int dashSpeed = 30;
     public float dashCooldown = 1f;
@@ -13,6 +14,7 @@ public class Dash : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _movementmanager = GetComponent<MovementManager>();
     }
 
     void Update()
@@ -24,7 +26,8 @@ public class Dash : MonoBehaviour
     }
 
     IEnumerator dash(){
-        _rigidbody.AddForce(transform.right * dashSpeed * Time.deltaTime, ForceMode2D.Impulse);
+
+        _rigidbody.AddForce(new Vector2(5 * _movementmanager.Direction, 0), ForceMode2D.Impulse);
         yield return new WaitForSeconds(dashCooldown);
         isDashing = false;
     }
