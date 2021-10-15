@@ -8,6 +8,7 @@ TagManager:
   - HealthBar
   - Bullet
   - Portal
+  - Hint
   layers:
   - Default
   - TransparentFX
