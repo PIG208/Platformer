@@ -386,6 +386,7 @@ GameObject:
   - component: {fileID: 9072475301913435997}
   - component: {fileID: 8018214546386786959}
   - component: {fileID: -4659931551161434420}
+  - component: {fileID: 2177779007526370137}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -451,7 +452,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -6810697999950630716, guid: ac925cfba40d66c4fa6e833eff22d270, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -584,5 +585,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a250b168767b9b48b09c1ba63268050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 11
+  MaxHealth: 15
   HealthBar: {fileID: 1654938292225249239}
+--- !u!114 &2177779007526370137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9072475301913435995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a110cbc86804604c8d40dc1a571975a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EquipementPosition: {fileID: 0}
+  CurrentWeaponManager: {fileID: 0}
+  SwitchInterval: 0.02
+  InitialWeaponRegistry: 
