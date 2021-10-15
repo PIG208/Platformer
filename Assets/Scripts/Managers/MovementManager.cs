@@ -4,7 +4,7 @@ using UnityEngine;
 public class MovementManager : MonoBehaviour
 {
     public float Speed = 4f;
-    public float JumpForce = 200f;
+    public float JumpForce = 100f;
     public int MaxJumps = 1;
 
     public int Direction { get => _direction; }
