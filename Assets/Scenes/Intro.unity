@@ -237,7 +237,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: '
+
+'
 --- !u!222 &93084029
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -258,6 +260,7 @@ GameObject:
   - component: {fileID: 235033872}
   - component: {fileID: 235033874}
   - component: {fileID: 235033875}
+  - component: {fileID: 235033876}
   m_Layer: 0
   m_Name: hint
   m_TagString: Untagged
@@ -305,7 +308,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 43fef623755874eff908f1a8d0e7c6d1, type: 3}
+  m_Sprite: {fileID: -7253464603274649025, guid: 1c6e0b4555e22134d98c1252ed5f1a7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -343,18 +346,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.00000023841858, y: -0.1996736}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.81, y: 2.79}
+    oldSize: {x: 2.8, y: 3.4}
     newSize: {x: 1.81, y: 2.79}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.81, y: 2.79}
+  m_Size: {x: 2.3635387, y: 3.1227136}
   m_EdgeRadius: 0
 --- !u!114 &235033875
 MonoBehaviour:
@@ -369,6 +372,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hint: {fileID: 93084028}
+--- !u!95 &235033876
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235033871}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 644909dd06fef874b948202575f42c97, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &263010268 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8357742388598187831, guid: a3b20ced1277b0443b6353e12e0edb9e, type: 3}
@@ -681,7 +703,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24625249, y: -0.08575469, z: -10}
+  m_LocalPosition: {x: 0.24625225, y: -0.08575469, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 768125543}
@@ -748,7 +770,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556119904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24625249, y: -0.08575469, z: -10}
+  m_LocalPosition: {x: 0.24625225, y: -0.08575469, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 302399057}
