@@ -26,7 +26,6 @@ public class Dash : MonoBehaviour
     }
 
     IEnumerator dash(){
-
         _rigidbody.AddForce(new Vector2(5 * _movementmanager.Direction, 0), ForceMode2D.Impulse);
         yield return new WaitForSeconds(dashCooldown);
         isDashing = false;
