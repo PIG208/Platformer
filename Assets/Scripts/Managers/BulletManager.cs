@@ -37,9 +37,9 @@ public class BulletManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Entity otherEntity = other.gameObject.GetComponent<Entity>();
-        CollideEntity?.Invoke(this, new BulletCollideArgs(otherEntity));
         if (otherEntity != null)
         {
+            CollideEntity?.Invoke(this, new BulletCollideArgs(otherEntity));
             CollidedEntity?.Invoke(this, new BulletCollideArgs(otherEntity));
         }
     }

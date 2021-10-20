@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(AIManager))]
 public class Enemy : Entity
 {
-    public override Group Group { get => Group.FriendlyToEnemy; }
+    public override Group Group => Group.Enemy;
 
     private void Start()
     {

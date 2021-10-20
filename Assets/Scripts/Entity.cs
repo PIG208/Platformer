@@ -6,7 +6,8 @@ public abstract class Entity : MonoBehaviour
     public InventoryManager Inventory { get => _inventory; }
     public HealthManager Health { get => _health; }
     public Animator EntityAnimator;
-    public virtual Group Group { get => Group.FriendlyToPlayer & Group.FriendlyToEnemy; }
+    public virtual Group Group => Group.Netural;
+    public virtual bool IsPlayer => false;
 
     private MovementManager _movement;
     private InventoryManager _inventory;

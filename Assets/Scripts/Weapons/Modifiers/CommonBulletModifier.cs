@@ -8,16 +8,16 @@ class CommonBulletModifier : IModifier<Gun>
         weapon.BulletCreate += HandleBulletCreate;
     }
 
-    protected BulletManager CreateBullet(GunManager gunManager)
+    protected virtual BulletManager CreateBullet(Gun.BulletEventArgs e)
     {
-        GameObject bullet = GameObject.Instantiate(gunManager.BulletPrefab, gunManager.BulletSpawn.transform.position, gunManager.transform.rotation);
+        GameObject bullet = GameObject.Instantiate(e.WeaponManager.BulletPrefab, e.WeaponManager.BulletSpawn.transform.position, e.WeaponManager.transform.rotation);
         return bullet.GetComponent<BulletManager>();
     }
 
     public void HandleBulletCollided(object sender, BulletManager.BulletCollideArgs e)
     {
         BulletManager bullet = ((BulletManager)sender);
-        if ((e.Other.Group & bullet.Group) == 0)
+        if (bullet.Group.IsHotileTo(e.Other.Group))
         {
             e.Other.GetComponent<HealthManager>().Damage((int)bullet.damage);
             GameObject.Destroy(bullet.gameObject);
@@ -26,7 +26,7 @@ class CommonBulletModifier : IModifier<Gun>
 
     public void HandleBulletCreate(object sender, Gun.BulletEventArgs e)
     {
-        BulletManager bullet = CreateBullet(e.WeaponManager);
+        BulletManager bullet = CreateBullet(e);
         bullet.CollidedEntity += HandleBulletCollided;
 
         e.BulletManagers.Add(bullet);
