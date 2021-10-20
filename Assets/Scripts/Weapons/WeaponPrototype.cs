@@ -11,23 +11,7 @@ public static class WeaponPrototype
 
     public static GameObject GetWeaponPrefab(WeaponRegistry registry)
     {
-        return GetWeaponPrefab(GetWeaponId(registry));
-    }
-
-    public static string GetWeaponId(WeaponRegistry registry)
-    {
-        switch (registry)
-        {
-            case WeaponRegistry.Knife:
-                return "Knife";
-            case WeaponRegistry.Pistol:
-                return "Pistol";
-            case WeaponRegistry.Rifle:
-                return "Rifle";
-            case WeaponRegistry.Bow:
-                return "Bow";
-        }
-        throw new ArgumentException($"{registry} doesn't exist in the weapon registry");
+        return GetWeaponPrefab(registry.WeaponId());
     }
 
     public static T GetWeapon<T>(WeaponRegistry registry) where T : BaseWeapon
@@ -39,6 +23,19 @@ public static class WeaponPrototype
         else if (typeof(T) == typeof(Gun))
         {
             return (T)Convert.ChangeType(new Gun(registry), typeof(T));
+        }
+        throw new ArgumentException($"{registry} is not a valid weapon");
+    }
+
+    public static BaseWeapon GetWeapon(WeaponRegistry registry)
+    {
+        if (registry.IsGun())
+        {
+            return new Gun(registry);
+        }
+        else if (registry.IsMelee())
+        {
+            return new Melee(registry);
         }
         throw new ArgumentException($"{registry} is not a valid weapon");
     }
