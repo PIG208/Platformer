@@ -13,8 +13,6 @@ public static class ExtensionRegistries
     {
         switch (extensionRegistry)
         {
-            case ExtensionRegistry.MissileLauncher:
-                return true;
             default:
                 return false;
         }
@@ -29,6 +27,19 @@ public static class ExtensionRegistries
             default:
                 return false;
         }
+    }
+
+    public static IModifier<T> Modifier<T>(this ExtensionRegistry registry) where T : BaseWeapon
+    {
+        if ((typeof(T) == typeof(Gun) && !registry.IsGun()) || (typeof(T) == typeof(Melee) && !registry.IsMelee()))
+            throw new ArgumentException($"{typeof(T)} does not match the type of {registry}");
+
+        switch (registry)
+        {
+            case ExtensionRegistry.MissileLauncher:
+                return (IModifier<T>)new MissileModifier();
+        }
+        throw new ArgumentException($"{registry} does not have a valid modifier");
     }
 
     public static GameObject ExtensionPrefab(this ExtensionRegistry id)
