@@ -61,7 +61,7 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
         if (_firing && _firingTimeOut <= 0)
         {
             _firingTimeOut = MaxFireInterval;
-            this.Inventory.CurrentWeaponManager.Fire(new FireContext(this, LevelManager.CurrentLevelManager.Enemies));
+            this.Inventory.CurrentWeaponManager.Fire(new FireContext(this, LevelManager.CurrentLevelManager.FindSurroundingTargets(this)));
         }
     }
     private void FixedUpdate()
