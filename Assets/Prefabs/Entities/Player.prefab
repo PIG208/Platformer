@@ -392,6 +392,7 @@ MonoBehaviour:
   EquipementPosition: {fileID: 7918199733780969696}
   CurrentWeaponManager: {fileID: 0}
   SwitchInterval: 0.22
+  Preset: 1
 --- !u!114 &425946367
 MonoBehaviour:
   m_ObjectHideFlags: 0

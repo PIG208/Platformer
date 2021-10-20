@@ -1,12 +1,15 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
     public Transform EquipementPosition;
     public WeaponManager CurrentWeaponManager;
-    public BaseWeapon[] Weapons;
+    public List<BaseWeapon> Weapons;
     public float SwitchInterval = Constants.SwitchWeaponInterval;
+    [Tooltip("The weapons this inventory manager will start with")]
+    public InventoryPreset Preset = InventoryPreset.Empty;
 
     private int _currentWeaponIndex = -1;
     private float _lastSwitch;
@@ -15,9 +18,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
-        _lastSwitch = SwitchInterval;
-        Weapons = new BaseWeapon[] { WeaponPrototype.GetWeapon<Gun>(WeaponRegistry.Pistol), WeaponPrototype.GetWeapon<Melee>(WeaponRegistry.Knife), WeaponPrototype.GetWeapon<Gun>(WeaponRegistry.Rifle), WeaponPrototype.GetWeapon<Gun>(WeaponRegistry.Bow) };
-        ((Gun)Weapons[0]).RegisterModifier(new MissileModifier());
+        Weapons = Preset.GetItems();
 
         NextWeapon();
     }
@@ -46,8 +47,8 @@ public class InventoryManager : MonoBehaviour
 
         if (CurrentWeaponManager != null) Destroy(CurrentWeaponManager.gameObject);
 
-        _currentWeaponIndex = index % Weapons.Length;
-        if (_currentWeaponIndex < 0) _currentWeaponIndex = Weapons.Length + _currentWeaponIndex;
+        _currentWeaponIndex = index % Weapons.Count;
+        if (_currentWeaponIndex < 0) _currentWeaponIndex = Weapons.Count + _currentWeaponIndex;
 
         CurrentWeaponManager = SpawnWeapon(Weapons[_currentWeaponIndex]);
 
