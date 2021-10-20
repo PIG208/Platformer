@@ -28,18 +28,6 @@ public class InventoryManager : MonoBehaviour
         if (_lastSwitch > 0) _lastSwitch -= Time.deltaTime;
     }
 
-    public WeaponManager SpawnWeapon(BaseWeapon weapon)
-    {
-        GameObject weaponObject = Instantiate(weapon.WeaponPrefab, EquipementPosition.position, EquipementPosition.rotation, EquipementPosition);
-        WeaponManager weaponManager = weaponObject.GetComponent<WeaponManager>();
-        weaponManager.Weapon = weapon;
-
-        if (weaponManager is null)
-            throw new ArgumentException($"The weapon {weapon.Name} doesn't have a corresponding WeaponManager");
-
-        return weaponManager;
-    }
-
     public void SwitchWeapon(int index)
     {
         if (_lastSwitch > 0) return;
@@ -50,7 +38,7 @@ public class InventoryManager : MonoBehaviour
         _currentWeaponIndex = index % Weapons.Count;
         if (_currentWeaponIndex < 0) _currentWeaponIndex = Weapons.Count + _currentWeaponIndex;
 
-        CurrentWeaponManager = SpawnWeapon(Weapons[_currentWeaponIndex]);
+        CurrentWeaponManager = Weapons[_currentWeaponIndex].Spawn(EquipementPosition);
 
         if (WeaponSwitched != null) WeaponSwitched(Weapons[_currentWeaponIndex], CurrentWeaponManager);
     }

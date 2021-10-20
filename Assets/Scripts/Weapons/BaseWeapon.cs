@@ -58,6 +58,19 @@ public abstract class BaseWeapon : Modifiable<BaseWeapon>
         modifier.Register(this);
     }
 
+    public WeaponManager Spawn(Transform transform)
+    {
+        GameObject weaponObject = GameObject.Instantiate(WeaponPrefab, transform.position, transform.rotation, transform);
+        WeaponManager weaponManager = weaponObject.GetComponent<WeaponManager>();
+
+        if (weaponManager is null)
+            throw new ArgumentException($"The weapon {this.Name} doesn't have a corresponding WeaponManager");
+
+        weaponManager.Weapon = this;
+
+        return weaponManager;
+    }
+
     public class FireEventArgs<T> : EventArgs where T : WeaponManager
     {
         public T WeaponManager;
