@@ -61,6 +61,17 @@ public abstract class BaseWeapon : Modifiable<BaseWeapon>
     public WeaponManager Spawn(Transform transform)
     {
         GameObject weaponObject = GameObject.Instantiate(WeaponPrefab, transform.position, transform.rotation, transform);
+        return BindWeapon(weaponObject);
+    }
+
+    public WeaponManager Spawn(Vector3 position, Quaternion rotation)
+    {
+        GameObject weaponObject = GameObject.Instantiate(WeaponPrefab, position, rotation);
+        return BindWeapon(weaponObject);
+    }
+
+    public WeaponManager BindWeapon(GameObject weaponObject)
+    {
         WeaponManager weaponManager = weaponObject.GetComponent<WeaponManager>();
 
         if (weaponManager is null)
