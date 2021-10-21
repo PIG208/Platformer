@@ -12,6 +12,7 @@ public static class Constants
     public const string MisslePrefab = "Weapons/Bullets/Missile";
     public const string BulletPrefab = "Weapons/Bullets/Regular";
     public const string CollectablePrefab = "Collectable";
+    public const string PlayerPrefab = "Entities/Player";
 
     public static float DropRate(Rarity rarity)
     {

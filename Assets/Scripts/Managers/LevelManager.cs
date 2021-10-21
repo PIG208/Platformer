@@ -1,17 +1,44 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-/// <summary>Each level needs to have a LevelManager, and only one LevelManager can exist in each level</summary>
+/// <summary>Only a single LevelManager exists throughout the game</summary>
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager CurrentLevelManager { get; private set; }
     public Player Player;
-    public List<Enemy> Enemies = new List<Enemy>();
-
+    public List<Enemy> Enemies;
+    public Camera MainCamera;
 
     private void Awake()
     {
         CurrentLevelManager = this;
+        Player = FindObjectOfType<Player>();
+        Transform startingTransform = GameObject.FindGameObjectWithTag("Start").transform;
+
+        if (Player == null)
+        {
+            Player = Instantiate(Resources.Load<GameObject>(Constants.PlayerPrefab), startingTransform.position, Quaternion.identity).GetComponent<Player>();
+        }
+        else
+        {
+            Player.gameObject.transform.position = startingTransform.position;
+        }
+        DontDestroyOnLoad(Player);
+
+        Enemies = new List<Enemy>();
+
+        MainCamera = FindObjectOfType<Camera>();
+        FindObjectOfType<Cinemachine.CinemachineVirtualCamera>().Follow = Player.transform;
+
+        Player.Health.HealthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Slider>();
+        Player.Health.UpdateHealthBar();
+    }
+
+    public void LoadLevel(string level)
+    {
+        SceneManager.LoadScene(level);
     }
 
     public IEnumerable<Entity> FindSurroundingTargets(Entity entity, float MaxDistance = 10f)

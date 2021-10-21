@@ -9,8 +9,9 @@ public class NextLevel : MonoBehaviour
     public string difficulty = "E";
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Player"){
-            SceneManager.LoadScene(difficulty + levelToLoad);
+        if (other.gameObject.tag == "Player")
+        {
+            LevelManager.CurrentLevelManager.LoadLevel(difficulty + levelToLoad);
         }
     }
 }
