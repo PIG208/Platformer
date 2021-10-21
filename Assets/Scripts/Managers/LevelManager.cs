@@ -31,7 +31,10 @@ public class LevelManager : MonoBehaviour
 
         MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         FindObjectOfType<Cinemachine.CinemachineVirtualCamera>().Follow = Player.transform;
+    }
 
+    private void Start()
+    {
         Player.Health.HealthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Slider>();
         Player.Health.UpdateHealthBar();
     }
