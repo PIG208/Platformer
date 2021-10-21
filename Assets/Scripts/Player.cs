@@ -62,6 +62,7 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
 
     private void Update()
     {
+        if(PublicVars.paused) return;
         if (_firingTimeout > 0)
         {
             _firingTimeout -= Time.deltaTime;
