@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Portal
   - Hint
+  - Music
   layers:
   - Default
   - TransparentFX

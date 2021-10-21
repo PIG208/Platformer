@@ -703,7 +703,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24625249, y: -0.08575469, z: -10}
+  m_LocalPosition: {x: 0.24625225, y: -0.08575469, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 768125543}
@@ -770,7 +770,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556119904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24625249, y: -0.08575469, z: -10}
+  m_LocalPosition: {x: 0.24625225, y: -0.08575469, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 302399057}
@@ -866,6 +866,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5045406726200415550, guid: 127bbfee0c8dabd45843bc15b8dd47b6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5045406726200415550, guid: 127bbfee0c8dabd45843bc15b8dd47b6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9002132591510653294, guid: 127bbfee0c8dabd45843bc15b8dd47b6, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -1197,9 +1205,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1224237554}
   - component: {fileID: 1224237553}
+  - component: {fileID: 1224237555}
   m_Layer: 0
   m_Name: 2D_Platformer_Music
-  m_TagString: Untagged
+  m_TagString: Music
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1216,7 +1225,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0c6841d84687fe04983b4663dcd760e2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.15
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1314,6 +1323,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1224237555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224237552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63909581af1404d49a524a4f59feda5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Music: {fileID: 1224237552}
 --- !u!1 &1487934251 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8887682791931727684, guid: a3b20ced1277b0443b6353e12e0edb9e, type: 3}
@@ -7714,6 +7736,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5045406726200415550, guid: 127bbfee0c8dabd45843bc15b8dd47b6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5045406726200415550, guid: 127bbfee0c8dabd45843bc15b8dd47b6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9072475301913435993, guid: 127bbfee0c8dabd45843bc15b8dd47b6, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 0.8333333
