@@ -11,6 +11,7 @@ public abstract class BaseWeapon : Modifiable<BaseWeapon>
     public string Name { get => _name; }
     /// <summary>The rarity of the weapon that determines the drop rate</summary>
     public Rarity Rarity { get => _rarity; }
+    public string Description { get => _description; }
     /// <summary>The power factor of the weapon</summary>
     public float Power { get => _power; }
     /// <summary>The prefab object that contains a WeaponManager</summary>
@@ -30,6 +31,7 @@ public abstract class BaseWeapon : Modifiable<BaseWeapon>
     private string _name;
     private Rarity _rarity;
     private float _power;
+    private string _description;
     private WeaponRegistry _weaponRegistry;
 
     /// <summary>Initialize a weapon from a weapon maanger</summary>
@@ -42,9 +44,10 @@ public abstract class BaseWeapon : Modifiable<BaseWeapon>
             throw new ArgumentException("WeaponPrefab must have a weapon manager");
         }
 
-        this._name = weaponManager.Name;
-        this._rarity = weaponManager.Rarity;
-        this._power = weaponManager.Power;
+        _name = weaponManager.Name;
+        _rarity = weaponManager.Rarity;
+        _power = weaponManager.Power;
+        _description = weaponManager.Description;
 
         foreach (IModifier<BaseWeapon> modifier in GeneralModifiers)
         {
@@ -75,7 +78,7 @@ public abstract class BaseWeapon : Modifiable<BaseWeapon>
         WeaponManager weaponManager = weaponObject.GetComponent<WeaponManager>();
 
         if (weaponManager is null)
-            throw new ArgumentException($"The weapon {this.Name} doesn't have a corresponding WeaponManager");
+            throw new ArgumentException($"The weapon {Name} doesn't have a corresponding WeaponManager");
 
         weaponManager.Weapon = this;
 

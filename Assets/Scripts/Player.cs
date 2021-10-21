@@ -15,12 +15,13 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
 
     private Rigidbody2D _rigidbody;
     private bool _firing;
-    private float _firingTimeOut;
+    private float _firingTimeout;
+    private float _pickupTimeout = Constants.PickupInterval;
 
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _firingTimeOut = MaxFireInterval;
+        _firingTimeout = MaxFireInterval;
         BindManagers();
     }
 
@@ -35,6 +36,14 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
         Movement.Move(movement);
 
         EntityAnimator.SetInteger("Speed", Movement.Direction * (int)movement.x);
+    }
+
+    public void OnPickup(InputAction.CallbackContext cb)
+    {
+        if (_pickupTimeout > 0) return;
+        _pickupTimeout = Constants.PickupInterval;
+
+        Inventory.TryPickup();
     }
 
     public void OnSwitchWeapon(InputAction.CallbackContext cb)
@@ -53,14 +62,19 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
 
     private void Update()
     {
-        if (_firingTimeOut > 0)
+        if (_firingTimeout > 0)
         {
-            _firingTimeOut -= Time.deltaTime;
+            _firingTimeout -= Time.deltaTime;
         }
 
-        if (_firing && _firingTimeOut <= 0)
+        if (_pickupTimeout > 0)
         {
-            _firingTimeOut = MaxFireInterval;
+            _pickupTimeout -= Time.deltaTime;
+        }
+
+        if (_firing && _firingTimeout <= 0)
+        {
+            _firingTimeout = MaxFireInterval;
             this.Inventory.CurrentWeaponManager.Fire(new FireContext(this, LevelManager.CurrentLevelManager.FindSurroundingTargets(this)));
         }
     }

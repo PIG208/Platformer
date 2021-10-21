@@ -1,15 +1,21 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
     public Transform EquipementPosition;
     public WeaponManager CurrentWeaponManager;
     public List<BaseWeapon> Weapons;
+    public List<ExtensionRegistry> Extensions;
     public float SwitchInterval = Constants.SwitchWeaponInterval;
     [Tooltip("The weapons this inventory manager will start with")]
     public InventoryPreset Preset = InventoryPreset.Empty;
+
+    [System.NonSerialized]
+    public List<CollectableManager> SurroundingCollectables = new List<CollectableManager>();
+    public Text PickupText;
 
     private int _currentWeaponIndex = -1;
     private float _lastSwitch;
@@ -26,6 +32,53 @@ public class InventoryManager : MonoBehaviour
     private void Update()
     {
         if (_lastSwitch > 0) _lastSwitch -= Time.deltaTime;
+    }
+
+    private void UpdateUI()
+    {
+        if (SurroundingCollectables.Count > 0)
+        {
+            PickupText.enabled = true;
+            PickupText.text = $"[E] Pickup {SurroundingCollectables[0].Name}";
+        }
+        else
+        {
+            PickupText.enabled = false;
+        }
+    }
+
+    public void AddCanPickup(CollectableManager collectableManager)
+    {
+        SurroundingCollectables.Add(collectableManager);
+        UpdateUI();
+    }
+
+    public void RemoveCanPickup(CollectableManager collectableManager)
+    {
+        SurroundingCollectables.Remove(collectableManager);
+        UpdateUI();
+    }
+
+    /// <summary>Will attempt to pick up the first surrounding collectables</summary>
+    public void TryPickup()
+    {
+        if (SurroundingCollectables.Count == 0) return;
+
+        CollectableManager target = SurroundingCollectables[0];
+        SurroundingCollectables.RemoveAt(0);
+        if (target.IsExtension)
+        {
+            if (target.Extension == ExtensionRegistry.None) throw new InvalidOperationException("Cannot pickup a null extension");
+            Extensions.Add(target.Extension);
+        }
+        else
+        {
+            if (target.Weapon == null) throw new InvalidOperationException("Cannot pickup a null weapon");
+            Weapons.Add(target.Weapon);
+            SwitchWeapon(Weapons.Count - 1);
+        }
+        Destroy(target.gameObject);
+        UpdateUI();
     }
 
     public void SwitchWeapon(int index)

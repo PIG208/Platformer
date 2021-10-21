@@ -49,6 +49,14 @@ public class @InputControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pickup"",
+                    ""type"": ""Button"",
+                    ""id"": ""3df2c0d5-f8c4-4a2f-8830-489e717348a2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -326,6 +334,28 @@ public class @InputControls : IInputActionCollection, IDisposable
                     ""action"": ""SwitchWeapon2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e80d16e4-ce81-4fc7-a879-409e43055895"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Pickup"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8b3ef757-5021-4857-b6f0-27a63a54f920"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pickup"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -366,6 +396,7 @@ public class @InputControls : IInputActionCollection, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_SwitchWeapon = m_Player.FindAction("SwitchWeapon", throwIfNotFound: true);
         m_Player_SwitchWeapon2 = m_Player.FindAction("SwitchWeapon2", throwIfNotFound: true);
+        m_Player_Pickup = m_Player.FindAction("Pickup", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -419,6 +450,7 @@ public class @InputControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_SwitchWeapon;
     private readonly InputAction m_Player_SwitchWeapon2;
+    private readonly InputAction m_Player_Pickup;
     public struct PlayerActions
     {
         private @InputControls m_Wrapper;
@@ -427,6 +459,7 @@ public class @InputControls : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @SwitchWeapon => m_Wrapper.m_Player_SwitchWeapon;
         public InputAction @SwitchWeapon2 => m_Wrapper.m_Player_SwitchWeapon2;
+        public InputAction @Pickup => m_Wrapper.m_Player_Pickup;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -448,6 +481,9 @@ public class @InputControls : IInputActionCollection, IDisposable
                 @SwitchWeapon2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeapon2;
                 @SwitchWeapon2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeapon2;
                 @SwitchWeapon2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeapon2;
+                @Pickup.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickup;
+                @Pickup.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickup;
+                @Pickup.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickup;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -464,6 +500,9 @@ public class @InputControls : IInputActionCollection, IDisposable
                 @SwitchWeapon2.started += instance.OnSwitchWeapon2;
                 @SwitchWeapon2.performed += instance.OnSwitchWeapon2;
                 @SwitchWeapon2.canceled += instance.OnSwitchWeapon2;
+                @Pickup.started += instance.OnPickup;
+                @Pickup.performed += instance.OnPickup;
+                @Pickup.canceled += instance.OnPickup;
             }
         }
     }
@@ -492,5 +531,6 @@ public class @InputControls : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnSwitchWeapon(InputAction.CallbackContext context);
         void OnSwitchWeapon2(InputAction.CallbackContext context);
+        void OnPickup(InputAction.CallbackContext context);
     }
 }

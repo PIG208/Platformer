@@ -6,6 +6,7 @@ public abstract class WeaponManager : MonoBehaviour
     public string Name;
     public Rarity Rarity;
     public float Power;
+    public string Description;
     public GameObject[] Slots;
     public Animator WeaponAnimator;
     public float FireInterval = 0.2f;
@@ -14,12 +15,12 @@ public abstract class WeaponManager : MonoBehaviour
 
     private void Start()
     {
-        Weapon.RaiseStart(this);
+        Weapon?.RaiseStart(this);
     }
 
     private void Update()
     {
-        Weapon.RaiseUpdate(this);
+        Weapon?.RaiseUpdate(this);
         if (_timeToFire > 0) _timeToFire -= Time.deltaTime;
     }
 

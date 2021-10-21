@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 1654938292225249239}
   m_Layer: 5
   m_Name: PlayerHealthBar
-  m_TagString: HealthBar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -602,13 +602,16 @@ MonoBehaviour:
   entries:
   - Count: 1
     DropChance: 0.203
+    Extension: -1
     WeaponRegistry: 2
     Extensions: 00000000
   - Count: 1
     DropChance: 0.415
+    Extension: -1
     WeaponRegistry: 0
     Extensions: 
   - Count: 1
     DropChance: 0.415
+    Extension: -1
     WeaponRegistry: 1
     Extensions: 00000000

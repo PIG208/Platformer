@@ -57,4 +57,15 @@ public static class ExtensionRegistries
 
         throw new ArgumentException($"{registry} doesn't exist in the extension registry");
     }
+
+    public static string Description(this ExtensionRegistry registry)
+    {
+        switch (registry)
+        {
+            case ExtensionRegistry.MissileLauncher:
+                return "Fire an additional missile tracking the nearest enemy";
+        }
+
+        return "???";
+    }
 }

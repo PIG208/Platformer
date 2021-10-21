@@ -6,9 +6,12 @@ public static class Constants
     public const float DamageFactor = 10f;
 
     public const float BaseAttackInterval = 0.22f;
+    public const float PickupInterval = 0.22f;
     public const float SwitchWeaponInterval = 0.02f;
 
     public const string MisslePrefab = "Weapons/Bullets/Missile";
+    public const string BulletPrefab = "Weapons/Bullets/Regular";
+    public const string CollectablePrefab = "Collectable";
 
     public static float DropRate(Rarity rarity)
     {

@@ -17,27 +17,34 @@ public class DropItemManager : MonoBehaviour
             float rand = UnityEngine.Random.Range(0f, 1f);
             if (rand < entry.DropChance)
             {
-                BaseWeapon weapon = WeaponPrototype.GetWeapon(entry.WeaponRegistry);
-                WeaponManager weaponManager = weapon.Spawn(transform.position, transform.rotation);
-                Debug.Log($"Spawned {weaponManager}");
-
-                foreach (ExtensionRegistry extensionRegistry in entry.Extensions)
+                // Spawn the item at the position of the entity and make it collectable
+                if (entry.IsExtension)
                 {
-                    if ((extensionRegistry.IsGun() && weapon.GetType() != typeof(Gun)) || (extensionRegistry.IsMelee() && weapon.GetType() != typeof(Melee)))
-                        throw new InvalidOperationException($"The weapon type of {extensionRegistry} does not match the weapon type of {weapon.GetType()}");
+                    CollectableManager.Spawn(entry.Extension, entry.Extension.ExtensionPrefab(), transform.position, transform.rotation);
+                }
+                else
+                {
+                    BaseWeapon weapon = WeaponPrototype.GetWeapon(entry.WeaponRegistry);
+                    CollectableManager.Spawn(weapon, transform.position, transform.rotation);
 
-                    if (extensionRegistry.IsGun())
+                    foreach (ExtensionRegistry extensionRegistry in entry.Extensions)
                     {
-                        ((Gun)weapon).RegisterModifier(extensionRegistry.Modifier<Gun>());
-                    }
-                    else if (extensionRegistry.IsMelee())
-                    {
-                        ((Melee)weapon).RegisterModifier(extensionRegistry.Modifier<Melee>());
-                    }
-                    else
-                    {
-                        // The extension is applicable to BaseWeapon
-                        weapon.RegisterModifier(extensionRegistry.Modifier<BaseWeapon>());
+                        if ((extensionRegistry.IsGun() && weapon.GetType() != typeof(Gun)) || (extensionRegistry.IsMelee() && weapon.GetType() != typeof(Melee)))
+                            throw new InvalidOperationException($"The weapon type of {extensionRegistry} does not match the weapon type of {weapon.GetType()}");
+
+                        if (extensionRegistry.IsGun())
+                        {
+                            ((Gun)weapon).RegisterModifier(extensionRegistry.Modifier<Gun>());
+                        }
+                        else if (extensionRegistry.IsMelee())
+                        {
+                            ((Melee)weapon).RegisterModifier(extensionRegistry.Modifier<Melee>());
+                        }
+                        else
+                        {
+                            // The extension is applicable to BaseWeapon
+                            weapon.RegisterModifier(extensionRegistry.Modifier<BaseWeapon>());
+                        }
                     }
                 }
             }
@@ -50,6 +57,8 @@ public class DropItemManager : MonoBehaviour
         public int Count = 1;
         [Range(0, 1)]
         public float DropChance;
+        public bool IsExtension { get => Extension != ExtensionRegistry.None; }
+        public ExtensionRegistry Extension = ExtensionRegistry.None;
         public WeaponRegistry WeaponRegistry;
         public ExtensionRegistry[] Extensions;
     }
