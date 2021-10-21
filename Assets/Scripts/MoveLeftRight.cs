@@ -8,10 +8,7 @@ public class MoveLeftRight : MonoBehaviour
     float distance = 3;
     float startX;
 
-    private void Start(){
-        Vector2 startPosition = transform.position;
-        transform.position = startPosition;
-    }
+    
 
     private void Update() {
         Vector2 newPosition = transform.position;
