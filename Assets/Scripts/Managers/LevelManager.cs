@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour
 
         Enemies = new List<Enemy>();
 
-        MainCamera = FindObjectOfType<Camera>();
+        MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         FindObjectOfType<Cinemachine.CinemachineVirtualCamera>().Follow = Player.transform;
 
         Player.Health.HealthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Slider>();
