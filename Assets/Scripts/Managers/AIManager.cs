@@ -7,6 +7,8 @@ public class AIManager : MonoBehaviour
 {
     Entity _entity;
     public float distance;
+    public float AlertDistance = 10f;
+    public float AttackDistance = 2f;
 
     private bool disabled = false;
 
@@ -26,9 +28,9 @@ public class AIManager : MonoBehaviour
     {
         if (disabled) return;
         distance = Vector2.Distance(LevelManager.CurrentLevelManager.Player.transform.position, transform.position);
-        if (distance < 10)
+        if (distance < AlertDistance)
         {
-            if (distance > 2)
+            if (distance > AttackDistance)
             {
                 Vector2 direction = LevelManager.CurrentLevelManager.Player.transform.position - transform.position;
                 _entity.Movement.Move(direction.normalized);
