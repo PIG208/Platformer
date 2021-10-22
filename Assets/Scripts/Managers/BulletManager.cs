@@ -12,6 +12,7 @@ public class BulletManager : MonoBehaviour
     public float LifeTime = 2f;
     public float Speed;
     public float AngularSpeed;
+    public Animator BulletAnimator;
 
     public event EventHandler<BulletCollideArgs> CollideEntity;
     public event EventHandler<BulletCollideArgs> CollidedEntity;

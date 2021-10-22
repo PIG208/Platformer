@@ -203,6 +203,7 @@ MonoBehaviour:
   LifeTime: 5
   Speed: 0
   AngularSpeed: 0
+  BulletAnimator: {fileID: 5997953974316564990}
 --- !u!1 &8679110405407130934
 GameObject:
   m_ObjectHideFlags: 0

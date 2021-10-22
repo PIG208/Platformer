@@ -3,7 +3,7 @@ using UnityEngine;
 class BouncyBulletModifier : CommonBulletModifier
 {
     public float TriggerChance = 0.2f;
-    public float Speed = 4f;
+    public float Speed = 100f;
 
     public override void HandleBulletCollided(object sender, BulletManager.BulletCollideArgs e)
     {

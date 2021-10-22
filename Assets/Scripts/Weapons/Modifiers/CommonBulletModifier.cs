@@ -19,7 +19,16 @@ class CommonBulletModifier : IModifier<Gun>
         if (bullet.Group.IsHotileTo(e.Other.Group))
         {
             e.Other.GetComponent<HealthManager>().Damage((int)bullet.damage);
-            GameObject.Destroy(bullet.gameObject);
+            if (bullet.BulletAnimator != null)
+            {
+                bullet.BulletAnimator.Play("Collide");
+                bullet.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                GameObject.Destroy(bullet.gameObject, 0.7f);
+            }
+            else
+            {
+                GameObject.Destroy(bullet.gameObject);
+            }
         }
     }
 
@@ -29,7 +38,6 @@ class CommonBulletModifier : IModifier<Gun>
         if (bullet == null) return;
         bullet.Group = e.FireContext.Player.Group;
         bullet.damage = e.WeaponManager.Power * Constants.DamageFactor;
-        bullet.Speed = e.WeaponManager.BulletSpeed;
         bullet.CollidedEntity += HandleBulletCollided;
 
         e.BulletManagers.Add(bullet);

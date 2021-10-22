@@ -180,11 +180,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Rifle
   Rarity: 2
-  Power: 1.1
+  Power: 1.2
   Description: 
   Slots: []
   WeaponAnimator: {fileID: 2919077545797070410}
   FireInterval: 0.1
+  ForeswingDelay: 0
   BulletPrefab: {fileID: 2008279335988198674, guid: 909d09bb6bc41914da1ebc5650d64d33, type: 3}
   BulletSpawn: {fileID: 25132119169653446}
   BulletSpeed: 400
