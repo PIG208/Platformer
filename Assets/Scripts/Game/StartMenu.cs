@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
+    private void Start(){
+
+        #if UNITY_WEBGL
+        quitBtn.SetActive(false);
+        #endif
+    }
     public void play(){
         SceneManager.LoadScene("Intro");
     }

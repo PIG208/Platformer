@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(HealthManager))]
 public class Player : Entity, InputControls.IPlayerActions, IMovable
 {
+    
     public float MaxFireInterval = Constants.BaseAttackInterval;
     public override Group Group => Group.Friendly;
     public override bool IsPlayer => true;
@@ -17,6 +18,7 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
     private bool _firing;
     private float _firingTimeout;
     private float _pickupTimeout = Constants.PickupInterval;
+   
 
     void Start()
     {
@@ -28,6 +30,7 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
     public void OnFire(InputAction.CallbackContext cb)
     {
         _firing = cb.performed;
+        
     }
 
     public void OnMove(InputAction.CallbackContext cb)
