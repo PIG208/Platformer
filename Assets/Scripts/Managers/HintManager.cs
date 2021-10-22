@@ -19,7 +19,7 @@ public class HintManager : MonoBehaviour
         
         }
         if(other.gameObject.tag=="Player"){
-            Hint.text = "Press Q or Left Shift";
+            Hint.text = "Press Q";
             StartCoroutine(Wait());
         }
     }
