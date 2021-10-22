@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class FallingPlatform : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    bool isFalling = false;
+    private void OnCollisionEnter2D(Collision2D other){
+        if(other.gameObject.CompareTag("Player")&& !isFalling){
+            isFalling = true;
+            StartCoroutine(Fall());
+            StartCoroutine(Destroy());
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+    IEnumerator Fall(){
+        yield return new WaitForSeconds(.5f);
+        GetComponent<Rigidbody2D>().isKinematic = false;
     }
+    IEnumerator Destroy(){
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
+    }
+
 }
+
+
+
