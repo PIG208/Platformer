@@ -8,13 +8,13 @@ public class DontDestroyMusic : MonoBehaviour
     public GameObject Music;
     void Awake()
     {
-        DontDestroyOnLoad (Music);
+        DontDestroyOnLoad(Music);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
- 
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(scene.buildIndex == 5 || scene.buildIndex == 0)
+        if (scene.buildIndex == 5 || scene.buildIndex == 6 || scene.buildIndex == 0)
         {
             Destroy(Music);
         }
