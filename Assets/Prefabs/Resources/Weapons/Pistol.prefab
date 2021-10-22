@@ -187,3 +187,4 @@ MonoBehaviour:
   BulletPrefab: {fileID: 2008279335988198674, guid: 909d09bb6bc41914da1ebc5650d64d33, type: 3}
   BulletSpawn: {fileID: 3647424851726946552}
   BulletSpeed: 300
+  WeaponSound: {fileID: 8300000, guid: d321417f6193245b4bf446c7e3995369, type: 3}
