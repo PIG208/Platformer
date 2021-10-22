@@ -634,22 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44aaff3cdb59e724583b4ee92a7f3f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entries:
-  - Count: 1
-    DropChance: 0.203
-    Extension: -1
-    WeaponRegistry: 2
-    Extensions: 00000000
-  - Count: 1
-    DropChance: 0.415
-    Extension: -1
-    WeaponRegistry: 0
-    Extensions: 
-  - Count: 1
-    DropChance: 0.415
-    Extension: -1
-    WeaponRegistry: 1
-    Extensions: 00000000
+  entries: []
 --- !u!114 &3418605567748945292
 MonoBehaviour:
   m_ObjectHideFlags: 0
