@@ -14,7 +14,7 @@ public class DontDestroyMusic : MonoBehaviour
  
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(scene.buildIndex == 4)
+        if(scene.buildIndex == 5 || scene.buildIndex == 0)
         {
             Destroy(Music);
         }

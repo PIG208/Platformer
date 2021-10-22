@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
-    public GameObject quitBtn;
+    //public GameObject quitBtn;
 
     private void Start(){
 
         #if UNITY_WEBGL
-        quitBtn.SetActive(false);
+        //quitBtn.SetActive(false);
         #endif
     }
 
