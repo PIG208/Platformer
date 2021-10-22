@@ -13,6 +13,7 @@ public class HealthManager : MonoBehaviour
 
     public event Action<HealthManager> Die;
     public event Action<HealthManager> Died;
+    public event Action<HealthManager> Hurt;
 
     public AudioClip DeathSound;
     public AudioSource AudioSource;
@@ -29,21 +30,21 @@ public class HealthManager : MonoBehaviour
     {
         IEnumerator Wait1()
         {
-            
+
             if (AudioSource != null) AudioSource.PlayOneShot(DeathSound);
             yield return new WaitForSeconds(2f);
-            
+
         }
         if (isDead) return;
 
         Health = Mathf.Clamp(Health - damage, 0, MaxHealth);
+        Hurt?.Invoke(this);
         if (Health <= 0)
         {
             StartCoroutine(Wait1());
             Die?.Invoke(this);
             isDead = true;
             Died?.Invoke(this);
-            
         };
         UpdateHealthBar();
     }

@@ -103,7 +103,7 @@ public class InventoryManager : MonoBehaviour
 
     public void SwitchWeapon(int index)
     {
-        if (_lastSwitch > 0) return;
+        if (_lastSwitch > 0 || Weapons.Count == 0) return;
         _lastSwitch = SwitchInterval;
 
         if (CurrentWeaponManager != null) Destroy(CurrentWeaponManager.gameObject);
