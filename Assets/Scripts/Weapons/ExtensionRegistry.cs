@@ -8,6 +8,8 @@ public enum ExtensionRegistry
     BouncyBullet = 1,
     Jetpack = 2,
     Repulse = 3,
+    BigBullets = 4,
+    BloodSeeking = 5,
 }
 
 public static class ExtensionRegistries
@@ -17,6 +19,7 @@ public static class ExtensionRegistries
         switch (extensionRegistry)
         {
             case ExtensionRegistry.Repulse:
+            case ExtensionRegistry.BloodSeeking:
                 return true;
             default:
                 return false;
@@ -29,6 +32,7 @@ public static class ExtensionRegistries
         {
             case ExtensionRegistry.BouncyBullet:
             case ExtensionRegistry.MissileLauncher:
+            case ExtensionRegistry.BigBullets:
                 return true;
             default:
                 return false;
@@ -50,6 +54,10 @@ public static class ExtensionRegistries
                 return (IModifier<T>)new JetpackModifier();
             case ExtensionRegistry.Repulse:
                 return (IModifier<T>)new RepulseModifier();
+            case ExtensionRegistry.BigBullets:
+                return (IModifier<T>)new BigBulletsModifier();
+            case ExtensionRegistry.BloodSeeking:
+                return (IModifier<T>)new BloodSeekingModifier();
         }
         throw new ArgumentException($"{registry} does not have a valid modifier");
     }

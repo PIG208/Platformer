@@ -685,7 +685,7 @@ MonoBehaviour:
   CurrentWeaponManager: {fileID: 0}
   Extensions: 
   SwitchInterval: 0.22
-  Preset: 6
+  Preset: 1
   PickupText: {fileID: 8722614264801604848}
   PickupEnabled: 0
 --- !u!114 &425946367
