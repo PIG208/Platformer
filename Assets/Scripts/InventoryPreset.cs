@@ -10,6 +10,7 @@ public enum InventoryPreset
     Missile,
     Teeth,
     Hammer,
+    Hunter,
     Debug
 }
 
@@ -27,7 +28,6 @@ public static class InventoryPresets
                 break;
             case InventoryPreset.Gunner:
                 items.Add(WeaponPrototype.GetWeapon(WeaponRegistry.Pistol));
-                items.Add(WeaponPrototype.GetWeapon(WeaponRegistry.Rifle));
                 break;
             case InventoryPreset.Missile:
                 Gun launcher = WeaponPrototype.GetWeapon<Gun>(WeaponRegistry.Rifle);
@@ -39,6 +39,9 @@ public static class InventoryPresets
                 break;
             case InventoryPreset.Hammer:
                 items.Add(WeaponPrototype.GetWeapon(WeaponRegistry.Hammer));
+                break;
+            case InventoryPreset.Hunter:
+                items.Add(WeaponPrototype.GetWeapon(WeaponRegistry.Rifle));
                 break;
             case InventoryPreset.Debug:
                 items.Add(WeaponPrototype.GetWeapon(WeaponRegistry.Knife));

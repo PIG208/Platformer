@@ -77,11 +77,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Knife
   Rarity: 1
-  Power: 2
+  Power: 1
   Description: 
   Slots: []
   WeaponAnimator: {fileID: 1163929746539491316}
   FireInterval: 0.2
+  ForeswingDelay: 0
   RaycastEndpointA: {fileID: 4208781147049566919}
   RaycastEndpointB: {fileID: 4836488001279114443}
   WeaponSound: {fileID: 8300000, guid: a1fef8717561c4f1b9d200a76e96888f, type: 3}
