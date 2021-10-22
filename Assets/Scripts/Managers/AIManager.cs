@@ -9,8 +9,10 @@ public class AIManager : MonoBehaviour
     public float distance;
     public float AlertDistance = 10f;
     public float AttackDistance = 2f;
+    public float AttackInterval = 1f;
 
     private bool disabled = false;
+    private float _attackTimeout = 0;
 
     private void Start()
     {
@@ -27,6 +29,7 @@ public class AIManager : MonoBehaviour
     private void Update()
     {
         if (disabled) return;
+        if (_attackTimeout > 0) _attackTimeout -= Time.deltaTime;
         distance = Vector2.Distance(LevelManager.CurrentLevelManager.Player.transform.position, transform.position);
         if (distance < AlertDistance)
         {
@@ -37,7 +40,11 @@ public class AIManager : MonoBehaviour
             }
             else
             {
-                _entity.Fire();
+                if (_attackTimeout <= 0)
+                {
+                    _entity.Fire();
+                    _attackTimeout = AttackInterval;
+                }
                 _entity.Movement.Move(Vector2.zero);
             }
         }
