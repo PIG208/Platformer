@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 1654938292225249239}
   m_Layer: 5
   m_Name: PlayerHealthBar
-  m_TagString: HealthBar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -586,6 +586,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 0
+  AlertDistance: 10
+  AttackDistance: 2
+  AttackInterval: 1
 --- !u!95 &8018214546386786959
 Animator:
   serializedVersion: 3
