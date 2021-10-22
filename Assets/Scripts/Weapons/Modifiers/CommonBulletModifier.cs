@@ -26,6 +26,7 @@ class CommonBulletModifier : IModifier<Gun>
     public void HandleBulletCreate(object sender, Gun.BulletEventArgs e)
     {
         BulletManager bullet = CreateBullet(e);
+        bullet.Group = e.FireContext.Player.Group;
         bullet.damage = e.WeaponManager.Power * Constants.DamageFactor;
         bullet.CollidedEntity += HandleBulletCollided;
 

@@ -10,7 +10,6 @@ class MissileModifier : CommonBulletModifier
     {
         BulletManager missile = GameObject.Instantiate(Resources.Load<GameObject>(Constants.MisslePrefab), e.WeaponManager.BulletSpawn.transform.position, e.WeaponManager.transform.rotation).GetComponent<BulletManager>();
         missile.Homing = true;
-        missile.Group = e.FireContext.Player.Group;
         missile.Speed = e.WeaponManager.BulletSpeed * SpeedFactor;
         missile.AngularSpeed = e.WeaponManager.BulletSpeed * AngularSpeedFactor;
 
