@@ -39,7 +39,7 @@ public class MovementManager : MonoBehaviour
         return Physics2D.OverlapCircle(GroundSphere.transform.position, GroundSphereRadius, GroundLayer);
     }
 
-    public void Move(Vector2 movement)
+    public void Move(Vector2 movement, bool flipOnly = false)
     {
         _xSpeed = movement.x * Speed;
         if (_xSpeed != 0)
@@ -64,6 +64,11 @@ public class MovementManager : MonoBehaviour
             _remainingJumps--;
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
             _rigidbody.AddForce(new Vector2(0, JumpForce));
+        }
+
+        if (flipOnly)
+        {
+            Move(Vector2.zero, false);
         }
     }
 

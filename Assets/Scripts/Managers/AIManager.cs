@@ -33,10 +33,10 @@ public class AIManager : MonoBehaviour
         distance = Vector2.Distance(LevelManager.Player.transform.position, transform.position);
         if (distance < AlertDistance)
         {
+            Vector2 direction = (LevelManager.Player.transform.position - transform.position).normalized;
             if (distance > AttackDistance)
             {
-                Vector2 direction = LevelManager.Player.transform.position - transform.position;
-                _entity.Movement.Move(direction.normalized);
+                _entity.Movement.Move(direction);
             }
             else
             {
@@ -45,7 +45,7 @@ public class AIManager : MonoBehaviour
                     _entity.Fire();
                     _attackTimeout = AttackInterval;
                 }
-                _entity.Movement.Move(Vector2.zero);
+                _entity.Movement.Move(direction, true);
             }
         }
         else
