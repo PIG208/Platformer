@@ -51,9 +51,9 @@ public class InventoryManager : MonoBehaviour
     private void UpdateUI()
     {
         CollectableManager collectable = getFirstCollectable();
+        if (PickupText != null) PickupText.enabled = collectable;
         if (collectable != null)
         {
-            PickupText.enabled = true;
             if (collectable.IsExtension)
             {
                 PickupText.text = $"[E] Install {collectable.Name} on {CurrentWeaponManager.Name}";
@@ -62,10 +62,6 @@ public class InventoryManager : MonoBehaviour
             {
                 PickupText.text = $"[E] Pick up {collectable.Name}";
             }
-        }
-        else
-        {
-            PickupText.enabled = false;
         }
     }
 
