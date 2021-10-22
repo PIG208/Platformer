@@ -35,18 +35,32 @@ public class InventoryManager : MonoBehaviour
         if (_lastSwitch > 0) _lastSwitch -= Time.deltaTime;
     }
 
+    private CollectableManager getFirstCollectable()
+    {
+        return SurroundingCollectables.Find(
+            collectable => !collectable.IsExtension || (
+                collectable.Extension.IsGun() && CurrentWeaponManager.Weapon.Type == "Gun"
+            ) || (
+                collectable.Extension.IsMelee() && CurrentWeaponManager.Weapon.Type == "Melee"
+            ) || (
+                !collectable.Extension.IsGun() && !collectable.Extension.IsMelee()
+            )
+        );
+    }
+
     private void UpdateUI()
     {
-        if (SurroundingCollectables.Count > 0)
+        CollectableManager collectable = getFirstCollectable();
+        if (collectable != null)
         {
             PickupText.enabled = true;
-            if (SurroundingCollectables[0].IsExtension)
+            if (collectable.IsExtension)
             {
-                PickupText.text = $"[E] Install {SurroundingCollectables[0].Name} on {CurrentWeaponManager.Name}";
+                PickupText.text = $"[E] Install {collectable.Name} on {CurrentWeaponManager.Name}";
             }
             else
             {
-                PickupText.text = $"[E] Pick up {SurroundingCollectables[0].Name}";
+                PickupText.text = $"[E] Pick up {collectable.Name}";
             }
         }
         else
@@ -70,34 +84,34 @@ public class InventoryManager : MonoBehaviour
     /// <summary>Will attempt to pick up the first surrounding collectables</summary>
     public void TryPickup()
     {
-        if (SurroundingCollectables.Count == 0) return;
+        CollectableManager collectable = getFirstCollectable();
+        if (collectable == null) return;
 
-        CollectableManager target = SurroundingCollectables[0];
-        SurroundingCollectables.RemoveAt(0);
-        if (target.IsExtension)
+        SurroundingCollectables.Remove(collectable);
+        if (collectable.IsExtension)
         {
-            if (target.Extension == ExtensionRegistry.None) throw new InvalidOperationException("Cannot pick up a null extension");
-            Extensions.Add(target.Extension);
-            if (target.Extension.IsGun())
+            if (collectable.Extension == ExtensionRegistry.None) throw new InvalidOperationException("Cannot pick up a null extension");
+            Extensions.Add(collectable.Extension);
+            if (collectable.Extension.IsGun())
             {
-                ((Gun)CurrentWeaponManager.Weapon).RegisterModifier(target.Extension.Modifier<Gun>());
+                ((Gun)CurrentWeaponManager.Weapon).RegisterModifier(collectable.Extension.Modifier<Gun>());
             }
-            else if (target.Extension.IsMelee())
+            else if (collectable.Extension.IsMelee())
             {
-                ((Melee)CurrentWeaponManager.Weapon).RegisterModifier(target.Extension.Modifier<Melee>());
+                ((Melee)CurrentWeaponManager.Weapon).RegisterModifier(collectable.Extension.Modifier<Melee>());
             }
             else
             {
-                CurrentWeaponManager.Weapon.RegisterModifier(target.Extension.Modifier<BaseWeapon>());
+                CurrentWeaponManager.Weapon.RegisterModifier(collectable.Extension.Modifier<BaseWeapon>());
             }
         }
         else
         {
-            if (target.Weapon == null) throw new InvalidOperationException("Cannot pick up a null weapon");
-            Weapons.Add(target.Weapon);
+            if (collectable.Weapon == null) throw new InvalidOperationException("Cannot pick up a null weapon");
+            Weapons.Add(collectable.Weapon);
             SwitchWeapon(Weapons.Count - 1);
         }
-        Destroy(target.gameObject);
+        Destroy(collectable.gameObject);
         UpdateUI();
     }
 
@@ -112,6 +126,7 @@ public class InventoryManager : MonoBehaviour
         if (_currentWeaponIndex < 0) _currentWeaponIndex = Weapons.Count + _currentWeaponIndex;
 
         CurrentWeaponManager = Weapons[_currentWeaponIndex].Spawn(EquipementPosition);
+        UpdateUI();
 
         if (WeaponSwitched != null) WeaponSwitched(Weapons[_currentWeaponIndex], CurrentWeaponManager);
     }
