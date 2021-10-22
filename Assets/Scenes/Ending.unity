@@ -201,8 +201,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 133.09973, y: 153.4252}
-  m_SizeDelta: {x: 476.1995, y: 87.1496}
+  m_AnchoredPosition: {x: 36.434814, y: 133.18124}
+  m_SizeDelta: {x: 669.5293, y: 127.6375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &101721873
 MonoBehaviour:
@@ -237,7 +237,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Congratulations! You have saved your friend! Go back home through the portal!
+  m_Text: "Congratulations! You have saved your friend! \nGo back home through the
+    portal! \nYour friend looks weird though?"
 --- !u!222 &101721874
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1429,7 +1430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 159, y: -61}
+  m_AnchoredPosition: {x: 111.15, y: 22}
   m_SizeDelta: {x: 222.31, y: 31.889008}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1931314883
