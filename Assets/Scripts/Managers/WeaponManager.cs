@@ -44,4 +44,11 @@ public abstract class WeaponManager : MonoBehaviour
             throw new ArgumentException($"{typeof(T).Name} does not match the type of the weapon");
         return (T)Weapon;
     }
+
+    public void DealDamage(HealthManager healthManager)
+    {
+        if (healthManager == null) return;
+
+        healthManager.Damage(Mathf.FloorToInt(Power * Constants.DamageFactor));
+    }
 }

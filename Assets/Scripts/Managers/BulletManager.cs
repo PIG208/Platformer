@@ -36,6 +36,12 @@ public class BulletManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
         Entity otherEntity = other.gameObject.GetComponent<Entity>();
         if (otherEntity != null)
         {

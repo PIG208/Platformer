@@ -3,7 +3,7 @@ using System.Collections.Generic;
 public static class Constants
 {
     /// <summary>The damage is given by BaseWeapon.Power * Constants.DamageFact</summary>
-    public const float DamageFactor = 10f;
+    public const float DamageFactor = 4f;
 
     public const float BaseAttackInterval = 0.22f;
     public const float PickupInterval = 0.22f;

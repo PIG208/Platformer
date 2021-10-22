@@ -11,6 +11,7 @@ TagManager:
   - Hint
   - Music
   - Start
+  - Wall
   layers:
   - Default
   - TransparentFX

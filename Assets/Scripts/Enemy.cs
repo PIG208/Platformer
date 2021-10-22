@@ -11,6 +11,7 @@ public class Enemy : Entity
     private void Start()
     {
         LevelManager.CurrentLevelManager.Enemies.Add(this);
+        BindManagers();
         GetComponent<HealthManager>().Die += HandleDie;
     }
 
