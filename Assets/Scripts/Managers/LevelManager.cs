@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager CurrentLevelManager { get; private set; }
-    public Player Player;
+    public static Player Player;
     public List<Enemy> Enemies;
     public Camera MainCamera;
 
@@ -23,8 +23,13 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
+            foreach (Player player in FindObjectsOfType<Player>())
+            {
+                if (player != Player) Destroy(player.gameObject);
+            }
             Player.gameObject.transform.position = startingTransform.position;
         }
+        Player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         DontDestroyOnLoad(Player);
 
         Enemies = new List<Enemy>();

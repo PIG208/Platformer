@@ -30,12 +30,12 @@ public class AIManager : MonoBehaviour
     {
         if (disabled) return;
         if (_attackTimeout > 0) _attackTimeout -= Time.deltaTime;
-        distance = Vector2.Distance(LevelManager.CurrentLevelManager.Player.transform.position, transform.position);
+        distance = Vector2.Distance(LevelManager.Player.transform.position, transform.position);
         if (distance < AlertDistance)
         {
             if (distance > AttackDistance)
             {
-                Vector2 direction = LevelManager.CurrentLevelManager.Player.transform.position - transform.position;
+                Vector2 direction = LevelManager.Player.transform.position - transform.position;
                 _entity.Movement.Move(direction.normalized);
             }
             else

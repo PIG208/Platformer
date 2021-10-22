@@ -23,10 +23,10 @@ public class RedShroomManager : MonoBehaviour
         Portal.SetActive(false);
 
         AIManager ai = _entity.GetComponent<AIManager>();
-        WeaponManager weaponManager = LevelManager.CurrentLevelManager.Player.Inventory.CurrentWeaponManager;
+        WeaponManager weaponManager = LevelManager.Player.Inventory.CurrentWeaponManager;
         HandleSwitchWeapon(weaponManager.Weapon, weaponManager);
 
-        LevelManager.CurrentLevelManager.Player.Inventory.WeaponSwitched += HandleSwitchWeapon;
+        LevelManager.Player.Inventory.WeaponSwitched += HandleSwitchWeapon;
         ai.AlertDistance = 15f;
 
         _entity.Health.Hurt -= HandleHurt;
