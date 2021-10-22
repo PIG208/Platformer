@@ -6,6 +6,7 @@ public enum ExtensionRegistry
     None = -1,
     MissileLauncher = 0,
     BouncyBullet = 1,
+    Jetpack = 2,
 }
 
 public static class ExtensionRegistries
@@ -42,6 +43,8 @@ public static class ExtensionRegistries
                 return (IModifier<T>)new MissileModifier();
             case ExtensionRegistry.BouncyBullet:
                 return (IModifier<T>)new BouncyBulletModifier();
+            case ExtensionRegistry.Jetpack:
+                return (IModifier<T>)new JetpackModifier();
         }
         throw new ArgumentException($"{registry} does not have a valid modifier");
     }
