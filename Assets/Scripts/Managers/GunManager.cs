@@ -8,8 +8,7 @@ public class GunManager : WeaponManager
     public GameObject BulletSpawn;
     public float BulletSpeed;
     public AudioClip WeaponSound;
-
-    AudioSource _audioSource;
+    public AudioSource AudioSource;
 
     public override void Fire(FireContext fireContext)
     {
@@ -24,6 +23,6 @@ public class GunManager : WeaponManager
 
         GetWeapon<Gun>().RaiseBulletCreate(this, fireContext, bulletManagers);
         GetWeapon<Gun>().RaiseBulletCreated(this, fireContext, bulletManagers);
-        _audioSource.PlayOneShot(WeaponSound);
+        if (AudioSource != null) AudioSource.PlayOneShot(WeaponSound);
     }
 }
