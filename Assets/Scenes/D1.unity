@@ -473,7 +473,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da213dfb37b2cfb4fa9ca53fa40b3fdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
   Enemies: []
   MainCamera: {fileID: 0}
 --- !u!4 &434347087
@@ -1308,7 +1307,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1138121878}
   - component: {fileID: 1138121877}
-  - component: {fileID: 1138121879}
   m_Layer: 0
   m_Name: Final Level Music
   m_TagString: Untagged
@@ -1426,19 +1424,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1138121879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1138121876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d72916820aea6b44d83397942362943a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Music: {fileID: 1138121876}
 --- !u!1 &1179893576 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8884826311832859281, guid: 731f52178ea321c47a94eb118c6db0f7, type: 3}
