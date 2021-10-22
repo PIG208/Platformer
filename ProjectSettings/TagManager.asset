@@ -23,7 +23,7 @@ TagManager:
   - Weapon
   - Shield
   - Map
-  - 
+  - Entity
   - 
   - 
   - 
@@ -48,6 +48,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 463464879
+    locked: 0
+  - name: Tiles
+    uniqueID: 1175862561
     locked: 0
   - name: Default
     uniqueID: 0

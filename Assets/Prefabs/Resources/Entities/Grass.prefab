@@ -387,7 +387,7 @@ GameObject:
   - component: {fileID: 8018214546386786959}
   - component: {fileID: -4659931551161434420}
   - component: {fileID: 3679980735695032457}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Grass
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -605,3 +605,4 @@ MonoBehaviour:
   SwitchInterval: 0.02
   Preset: 4
   PickupText: {fileID: 0}
+  PickupEnabled: 0

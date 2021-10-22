@@ -99,8 +99,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1736372505
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -9057444008558310320, guid: 7fea345812dfb6347a680caeae50b92c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -180,6 +180,7 @@ MonoBehaviour:
   Name: Rifle
   Rarity: 2
   Power: 1.1
+  Description: 
   Slots: []
   WeaponAnimator: {fileID: 2919077545797070410}
   FireInterval: 0.1
