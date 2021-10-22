@@ -9,7 +9,6 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(HealthManager))]
 public class Player : Entity, InputControls.IPlayerActions, IMovable
 {
-    
     public float MaxFireInterval = Constants.BaseAttackInterval;
     public override Group Group => Group.Friendly;
     public override bool IsPlayer => true;
@@ -18,19 +17,19 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
     private bool _firing;
     private float _firingTimeout;
     private float _pickupTimeout = Constants.PickupInterval;
-   
 
-    void Start()
+
+    void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _firingTimeout = MaxFireInterval;
         BindManagers();
+        Health.Die += HandleDie;
     }
 
     public void OnFire(InputAction.CallbackContext cb)
     {
         _firing = cb.performed;
-        
     }
 
     public void OnMove(InputAction.CallbackContext cb)
@@ -63,9 +62,15 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
         Inventory.SwitchWeapon(int.Parse(cb.control.name) - 1);
     }
 
+    public void HandleDie(HealthManager healthManager)
+    {
+        healthManager.Respawn();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     private void Update()
     {
-        if(PublicVars.paused) return;
+        if (PublicVars.paused) return;
         if (_firingTimeout > 0)
         {
             _firingTimeout -= Time.deltaTime;
@@ -94,11 +99,7 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
     {
         if (other.gameObject.tag == "Enemy")
         {
-            this.Health.Damage(10);
-            if (Health.Health == 0)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
+            Health.Damage(10);
         }
     }
 

@@ -37,6 +37,13 @@ public class HealthManager : MonoBehaviour
         this.Damage(-heal);
     }
 
+    public void Respawn()
+    {
+        Health = MaxHealth;
+        isDead = false;
+        UpdateHealthBar();
+    }
+
     public void UpdateHealthBar()
     {
         if (HealthBar is null) return;
