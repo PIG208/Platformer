@@ -19,7 +19,7 @@ public class Hint2 : MonoBehaviour
         
         }
         if(other.gameObject.tag=="Player"){
-            Hint.text = "Press LShift";
+            Hint.text = "Press LShift or RB";
             StartCoroutine(Wait());
         }
     }

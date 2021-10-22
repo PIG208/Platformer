@@ -17,7 +17,7 @@ public class Hint3 : MonoBehaviour
         }
         if (other.gameObject.tag == "Player")
         {
-            Hint.text = "Use Scroll Wheel";
+            Hint.text = "Use Scroll Wheel or DPad";
             StartCoroutine(Wait());
         }
     }
