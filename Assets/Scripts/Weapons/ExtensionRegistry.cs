@@ -7,6 +7,7 @@ public enum ExtensionRegistry
     MissileLauncher = 0,
     BouncyBullet = 1,
     Jetpack = 2,
+    Repulse = 3,
 }
 
 public static class ExtensionRegistries
@@ -15,6 +16,8 @@ public static class ExtensionRegistries
     {
         switch (extensionRegistry)
         {
+            case ExtensionRegistry.Repulse:
+                return true;
             default:
                 return false;
         }
@@ -45,6 +48,8 @@ public static class ExtensionRegistries
                 return (IModifier<T>)new BouncyBulletModifier();
             case ExtensionRegistry.Jetpack:
                 return (IModifier<T>)new JetpackModifier();
+            case ExtensionRegistry.Repulse:
+                return (IModifier<T>)new RepulseModifier();
         }
         throw new ArgumentException($"{registry} does not have a valid modifier");
     }
@@ -73,6 +78,8 @@ public static class ExtensionRegistries
         {
             case ExtensionRegistry.MissileLauncher:
                 return "Fire an additional missile tracking the nearest enemy";
+            case ExtensionRegistry.Repulse:
+                return "Knock back the enemy";
         }
 
         return "???";

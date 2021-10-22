@@ -13,13 +13,18 @@ public class CommonKnifeModifier : IModifier<Melee>
 
     }
 
-    public void HandleMeleeAttack(object weapon, BaseWeapon.FireEventArgs<MeleeManager> e)
+    protected RaycastHit2D[] FindHits(BaseWeapon.FireEventArgs<MeleeManager> e)
     {
-        foreach (RaycastHit2D raycast in Physics2D.RaycastAll(
+        return Physics2D.RaycastAll(
             e.WeaponManager.RaycastEndpointA.position,
             e.WeaponManager.RaycastEndpointB.position - e.WeaponManager.RaycastEndpointA.position,
             Vector2.Distance(e.WeaponManager.RaycastEndpointA.position, e.WeaponManager.RaycastEndpointB.position)
-        ))
+        );
+    }
+
+    public virtual void HandleMeleeAttack(object weapon, BaseWeapon.FireEventArgs<MeleeManager> e)
+    {
+        foreach (RaycastHit2D raycast in FindHits(e))
         {
             Entity entity = raycast.collider.GetComponent<Entity>();
             if (entity != null && e.FireContext.Player.Group.IsHotileTo(entity.Group))
