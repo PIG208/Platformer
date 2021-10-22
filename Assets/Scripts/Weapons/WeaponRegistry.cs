@@ -43,18 +43,8 @@ public static class WeaponRegistries
     {
         switch (registry)
         {
-            case WeaponRegistry.Knife:
-                return "Knife";
-            case WeaponRegistry.Pistol:
-                return "Pistol";
-            case WeaponRegistry.Rifle:
-                return "Rifle";
-            case WeaponRegistry.Bow:
-                return "Bow";
-            case WeaponRegistry.Bite:
-                return "Bite";
-            case WeaponRegistry.Hammer:
-                return "Hammer";
+            default:
+                return registry.ToString();
         }
 
         throw new ArgumentException($"{registry} doesn't exist in the weapon registry");

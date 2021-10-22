@@ -40,7 +40,14 @@ public class InventoryManager : MonoBehaviour
         if (SurroundingCollectables.Count > 0)
         {
             PickupText.enabled = true;
-            PickupText.text = $"[E] Pickup {SurroundingCollectables[0].Name}";
+            if (SurroundingCollectables[0].IsExtension)
+            {
+                PickupText.text = $"[E] Install {SurroundingCollectables[0].Name} to {CurrentWeaponManager.Name}";
+            }
+            else
+            {
+                PickupText.text = $"[E] Pickup {SurroundingCollectables[0].Name}";
+            }
         }
         else
         {
@@ -71,6 +78,18 @@ public class InventoryManager : MonoBehaviour
         {
             if (target.Extension == ExtensionRegistry.None) throw new InvalidOperationException("Cannot pickup a null extension");
             Extensions.Add(target.Extension);
+            if (target.Extension.IsGun())
+            {
+                ((Gun)CurrentWeaponManager.Weapon).RegisterModifier(target.Extension.Modifier<Gun>());
+            }
+            else if (target.Extension.IsMelee())
+            {
+                ((Melee)CurrentWeaponManager.Weapon).RegisterModifier(target.Extension.Modifier<Melee>());
+            }
+            else
+            {
+                CurrentWeaponManager.Weapon.RegisterModifier(target.Extension.Modifier<BaseWeapon>());
+            }
         }
         else
         {

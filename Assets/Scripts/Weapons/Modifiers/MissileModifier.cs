@@ -8,7 +8,7 @@ class MissileModifier : CommonBulletModifier
 
     protected override BulletManager CreateBullet(Gun.BulletEventArgs e)
     {
-        BulletManager missile = GameObject.Instantiate(Resources.Load<GameObject>(Constants.MisslePrefab), e.WeaponManager.BulletSpawn.transform.position, e.WeaponManager.transform.rotation).GetComponent<BulletManager>();
+        BulletManager missile = e.WeaponManager.SpawnBullet(Constants.MisslePrefab);
         missile.Homing = true;
         missile.Speed = e.WeaponManager.BulletSpeed * SpeedFactor;
         missile.AngularSpeed = e.WeaponManager.BulletSpeed * AngularSpeedFactor;

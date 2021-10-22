@@ -9,7 +9,8 @@ public enum InventoryPreset
     Gunner,
     Missile,
     Teeth,
-    Hammer
+    Hammer,
+    Debug
 }
 
 public static class InventoryPresets
@@ -23,7 +24,6 @@ public static class InventoryPresets
                 return items;
             case InventoryPreset.Newbee:
                 items.Add(WeaponPrototype.GetWeapon(WeaponRegistry.Knife));
-                items.Add(WeaponPrototype.GetWeapon(WeaponRegistry.Pistol));
                 break;
             case InventoryPreset.Gunner:
                 items.Add(WeaponPrototype.GetWeapon(WeaponRegistry.Pistol));
@@ -38,6 +38,16 @@ public static class InventoryPresets
                 items.Add(WeaponPrototype.GetWeapon(WeaponRegistry.Bite));
                 break;
             case InventoryPreset.Hammer:
+                items.Add(WeaponPrototype.GetWeapon(WeaponRegistry.Hammer));
+                break;
+            case InventoryPreset.Debug:
+                items.Add(WeaponPrototype.GetWeapon(WeaponRegistry.Knife));
+                Gun pistol = WeaponPrototype.GetWeapon<Gun>(WeaponRegistry.Pistol);
+                items.Add(pistol);
+                pistol.RegisterModifier(new BouncyBulletModifier());
+                items.Add(WeaponPrototype.GetWeapon(WeaponRegistry.Rifle));
+                items.Add(WeaponPrototype.GetWeapon(WeaponRegistry.Bow));
+                items.Add(WeaponPrototype.GetWeapon(WeaponRegistry.Bite));
                 items.Add(WeaponPrototype.GetWeapon(WeaponRegistry.Hammer));
                 break;
         }

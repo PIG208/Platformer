@@ -25,4 +25,10 @@ public class GunManager : WeaponManager
         GetWeapon<Gun>().RaiseBulletCreated(this, fireContext, bulletManagers);
         if (AudioSource != null) AudioSource.PlayOneShot(WeaponSound);
     }
+
+    public BulletManager SpawnBullet(string resource)
+    {
+        return Instantiate(Resources.Load<GameObject>(resource), BulletSpawn.transform.position, transform.rotation).GetComponent<BulletManager>();
+    }
+
 }

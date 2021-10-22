@@ -13,7 +13,7 @@ class CommonBulletModifier : IModifier<Gun>
         return bullet.GetComponent<BulletManager>();
     }
 
-    public void HandleBulletCollided(object sender, BulletManager.BulletCollideArgs e)
+    public virtual void HandleBulletCollided(object sender, BulletManager.BulletCollideArgs e)
     {
         BulletManager bullet = ((BulletManager)sender);
         if (bullet.Group.IsHotileTo(e.Other.Group))
@@ -26,8 +26,10 @@ class CommonBulletModifier : IModifier<Gun>
     public void HandleBulletCreate(object sender, Gun.BulletEventArgs e)
     {
         BulletManager bullet = CreateBullet(e);
+        if (bullet == null) return;
         bullet.Group = e.FireContext.Player.Group;
         bullet.damage = e.WeaponManager.Power * Constants.DamageFactor;
+        bullet.Speed = e.WeaponManager.BulletSpeed;
         bullet.CollidedEntity += HandleBulletCollided;
 
         e.BulletManagers.Add(bullet);

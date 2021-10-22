@@ -5,6 +5,7 @@ public enum ExtensionRegistry
 {
     None = -1,
     MissileLauncher = 0,
+    BouncyBullet = 1,
 }
 
 public static class ExtensionRegistries
@@ -22,6 +23,7 @@ public static class ExtensionRegistries
     {
         switch (extensionRegistry)
         {
+            case ExtensionRegistry.BouncyBullet:
             case ExtensionRegistry.MissileLauncher:
                 return true;
             default:
@@ -38,6 +40,8 @@ public static class ExtensionRegistries
         {
             case ExtensionRegistry.MissileLauncher:
                 return (IModifier<T>)new MissileModifier();
+            case ExtensionRegistry.BouncyBullet:
+                return (IModifier<T>)new BouncyBulletModifier();
         }
         throw new ArgumentException($"{registry} does not have a valid modifier");
     }
@@ -53,6 +57,8 @@ public static class ExtensionRegistries
         {
             case ExtensionRegistry.MissileLauncher:
                 return "MissileLauncher";
+            default:
+                return registry.ToString();
         }
 
         throw new ArgumentException($"{registry} doesn't exist in the extension registry");

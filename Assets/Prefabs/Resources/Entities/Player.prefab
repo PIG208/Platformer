@@ -417,7 +417,7 @@ MonoBehaviour:
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 155
+  m_DynamicPixelsPerUnit: 15
   m_PresetInfoIsWorld: 1
 --- !u!114 &8723408980070728027
 MonoBehaviour:
@@ -685,7 +685,7 @@ MonoBehaviour:
   CurrentWeaponManager: {fileID: 0}
   Extensions: 
   SwitchInterval: 0.22
-  Preset: 1
+  Preset: 6
   PickupText: {fileID: 8722614264801604848}
   PickupEnabled: 0
 --- !u!114 &425946367
@@ -702,3 +702,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   HealthBar: {fileID: 0}
+  DeathSound: {fileID: 0}
+  AudioSource: {fileID: 0}
