@@ -56,7 +56,7 @@ public class InventoryManager : MonoBehaviour
         {
             if (collectable.IsExtension)
             {
-                PickupText.text = $"[E] Install {collectable.Name} on {CurrentWeaponManager.Name}";
+                PickupText.text = $"[E]/[↑] Install {collectable.Name} on {CurrentWeaponManager.Name}";
             }
             else
             {
