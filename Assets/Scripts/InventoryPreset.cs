@@ -8,7 +8,8 @@ public enum InventoryPreset
     Newbee,
     Gunner,
     Missile,
-    Teeth
+    Teeth,
+    Hammer
 }
 
 public static class InventoryPresets
@@ -35,6 +36,9 @@ public static class InventoryPresets
                 break;
             case InventoryPreset.Teeth:
                 items.Add(WeaponPrototype.GetWeapon(WeaponRegistry.Bite));
+                break;
+            case InventoryPreset.Hammer:
+                items.Add(WeaponPrototype.GetWeapon(WeaponRegistry.Hammer));
                 break;
         }
         return items;

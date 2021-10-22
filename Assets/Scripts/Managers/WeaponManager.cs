@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public abstract class WeaponManager : MonoBehaviour
@@ -10,6 +11,7 @@ public abstract class WeaponManager : MonoBehaviour
     public GameObject[] Slots;
     public Animator WeaponAnimator;
     public float FireInterval = 0.2f;
+    public float ForeswingDelay = 0;
 
     private float _timeToFire = 0;
 
@@ -49,6 +51,12 @@ public abstract class WeaponManager : MonoBehaviour
     {
         if (healthManager == null) return;
 
-        healthManager.Damage(Mathf.FloorToInt(Power * Constants.DamageFactor));
+        StartCoroutine(delayDamage(healthManager, Mathf.FloorToInt(Power * Constants.DamageFactor), ForeswingDelay));
+    }
+
+    private IEnumerator delayDamage(HealthManager healthManager, int damage, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        healthManager.Damage(damage);
     }
 }
