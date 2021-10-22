@@ -16,7 +16,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.Escape)){
+        if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7)){
             if(PublicVars.paused){
                 Resume();
             }
@@ -37,7 +37,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Quit(){
 
-        Application.Quit();
+        SceneManager.LoadScene("Start");
 
     }
 
