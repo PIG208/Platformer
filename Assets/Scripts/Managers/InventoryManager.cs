@@ -42,11 +42,11 @@ public class InventoryManager : MonoBehaviour
             PickupText.enabled = true;
             if (SurroundingCollectables[0].IsExtension)
             {
-                PickupText.text = $"[E] Install {SurroundingCollectables[0].Name} to {CurrentWeaponManager.Name}";
+                PickupText.text = $"[E] Install {SurroundingCollectables[0].Name} on {CurrentWeaponManager.Name}";
             }
             else
             {
-                PickupText.text = $"[E] Pickup {SurroundingCollectables[0].Name}";
+                PickupText.text = $"[E] Pick up {SurroundingCollectables[0].Name}";
             }
         }
         else
@@ -76,7 +76,7 @@ public class InventoryManager : MonoBehaviour
         SurroundingCollectables.RemoveAt(0);
         if (target.IsExtension)
         {
-            if (target.Extension == ExtensionRegistry.None) throw new InvalidOperationException("Cannot pickup a null extension");
+            if (target.Extension == ExtensionRegistry.None) throw new InvalidOperationException("Cannot pick up a null extension");
             Extensions.Add(target.Extension);
             if (target.Extension.IsGun())
             {
@@ -93,7 +93,7 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            if (target.Weapon == null) throw new InvalidOperationException("Cannot pickup a null weapon");
+            if (target.Weapon == null) throw new InvalidOperationException("Cannot pick up a null weapon");
             Weapons.Add(target.Weapon);
             SwitchWeapon(Weapons.Count - 1);
         }
