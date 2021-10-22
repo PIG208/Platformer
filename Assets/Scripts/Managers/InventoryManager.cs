@@ -60,7 +60,7 @@ public class InventoryManager : MonoBehaviour
             }
             else
             {
-                PickupText.text = $"[E] Pick up {collectable.Name}";
+                PickupText.text = $"[E]/[↑] Pick up {collectable.Name}";
             }
         }
     }
