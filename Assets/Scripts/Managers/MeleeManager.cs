@@ -5,6 +5,8 @@ public class MeleeManager : WeaponManager
 {
     public Transform RaycastEndpointA;
     public Transform RaycastEndpointB;
+    public AudioClip WeaponSound;
+    public AudioSource AudioSource;
 
     public override void Fire(FireContext fireContext)
     {
@@ -14,5 +16,6 @@ public class MeleeManager : WeaponManager
         // Invoke Fire event on the weapon
         Weapon.RaiseFire(this, fireContext);
         ((Melee)Weapon).RaiseFire(this, fireContext);
+        if (AudioSource != null) AudioSource.PlayOneShot(WeaponSound);
     }
 }
