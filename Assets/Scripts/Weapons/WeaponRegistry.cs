@@ -6,7 +6,8 @@ public enum WeaponRegistry
     Knife = 0,
     Pistol = 1,
     Rifle = 2,
-    Bow = 3
+    Bow = 3,
+    Bite = 4,
 }
 
 public static class WeaponRegistries
@@ -16,6 +17,7 @@ public static class WeaponRegistries
         switch (weaponRegistry)
         {
             case WeaponRegistry.Knife:
+            case WeaponRegistry.Bite:
                 return true;
             default:
                 return false;
@@ -47,6 +49,8 @@ public static class WeaponRegistries
                 return "Rifle";
             case WeaponRegistry.Bow:
                 return "Bow";
+            case WeaponRegistry.Bite:
+                return "Bite";
         }
 
         throw new ArgumentException($"{registry} doesn't exist in the weapon registry");

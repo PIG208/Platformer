@@ -75,6 +75,36 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1094513926068094819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5573623647249236537}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5573623647249236537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094513926068094819}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.21, y: -0.21, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9072475301913435998}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2077384077426581477
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,6 +417,7 @@ GameObject:
   - component: {fileID: 8018214546386786959}
   - component: {fileID: -4659931551161434420}
   - component: {fileID: -6567789661898921794}
+  - component: {fileID: 3418605567748945292}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -407,6 +438,7 @@ Transform:
   m_Children:
   - {fileID: 7432332048625655052}
   - {fileID: 1148028155033056037}
+  - {fileID: 5573623647249236537}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -615,3 +647,22 @@ MonoBehaviour:
     Extension: -1
     WeaponRegistry: 1
     Extensions: 00000000
+--- !u!114 &3418605567748945292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9072475301913435995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a110cbc86804604c8d40dc1a571975a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EquipementPosition: {fileID: 5573623647249236537}
+  CurrentWeaponManager: {fileID: 0}
+  Extensions: 
+  SwitchInterval: 0.02
+  Preset: 4
+  PickupText: {fileID: 0}
+  PickupEnabled: 0

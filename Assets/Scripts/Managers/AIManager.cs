@@ -2,32 +2,47 @@ using UnityEngine;
 
 /// <summary>This will be used as the generic manager for AIs.
 /// Enable AI for any movables by attaching this component to the prefab.</summary>
-[RequireComponent(typeof(MovementManager))]
+[RequireComponent(typeof(Entity))]
 public class AIManager : MonoBehaviour
 {
-    MovementManager _movement;
+    Entity _entity;
     public float distance;
+
+    private bool disabled = false;
 
     private void Start()
     {
-        _movement = GetComponent<MovementManager>();
+        _entity = GetComponent<Entity>();
+        GetComponent<HealthManager>().Die += HandleDie;
+    }
+
+    private void HandleDie(HealthManager healthManager)
+    {
+        disabled = true;
+        _entity.Movement.Move(Vector2.zero);
     }
 
     private void Update()
-    {   
+    {
+        if (disabled) return;
         distance = Vector2.Distance(LevelManager.CurrentLevelManager.Player.transform.position, transform.position);
-        if(distance<5){
-            _movement.Speed = 4f;
-            Vector2 direction = LevelManager.CurrentLevelManager.Player.transform.position - transform.position;
-            _movement.Move(direction.normalized);
+        if (distance < 10)
+        {
+            if (distance > 2)
+            {
+                Vector2 direction = LevelManager.CurrentLevelManager.Player.transform.position - transform.position;
+                _entity.Movement.Move(direction.normalized);
+            }
+            else
+            {
+                _entity.Fire();
+                _entity.Movement.Move(Vector2.zero);
+            }
         }
-        else{
-            _movement.Speed = 0;
-            Vector2 direction;
-            direction.x = 0;
-            direction.y = 0;
-            _movement.Move(direction.normalized);
+        else
+        {
+            _entity.Movement.Move(Vector2.zero);
         }
-        
+
     }
 }

@@ -14,7 +14,7 @@ public class CollectableManager : MonoBehaviour
         InventoryManager inventory = other.GetComponent<InventoryManager>();
         Debug.Log("other");
         Debug.Log(inventory);
-        if (inventory != null && !inventory.SurroundingCollectables.Contains(this))
+        if (inventory != null && inventory.PickupEnabled && !inventory.SurroundingCollectables.Contains(this))
         {
             inventory.AddCanPickup(this);
         }
@@ -23,7 +23,7 @@ public class CollectableManager : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         InventoryManager inventory = other.GetComponent<InventoryManager>();
-        if (inventory != null && inventory.SurroundingCollectables.Contains(this))
+        if (inventory != null && inventory.PickupEnabled && inventory.SurroundingCollectables.Contains(this))
         {
             inventory.RemoveCanPickup(this);
         }

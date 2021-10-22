@@ -24,7 +24,8 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
         _rigidbody = GetComponent<Rigidbody2D>();
         _firingTimeout = MaxFireInterval;
         BindManagers();
-        Health.Die += HandleDie;
+        Inventory.PickupEnabled = true;
+        Health.Died += HandleDied;
     }
 
     public void OnFire(InputAction.CallbackContext cb)
@@ -62,10 +63,10 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
         Inventory.SwitchWeapon(int.Parse(cb.control.name) - 1);
     }
 
-    public void HandleDie(HealthManager healthManager)
+    public void HandleDied(HealthManager healthManager)
     {
-        healthManager.Respawn();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        healthManager.Respawn();
     }
 
     private void Update()
@@ -84,25 +85,15 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
         if (_firing && _firingTimeout <= 0)
         {
             _firingTimeout = MaxFireInterval;
-            this.Inventory.CurrentWeaponManager.Fire(new FireContext(this, LevelManager.CurrentLevelManager.FindSurroundingTargets(this)));
+            Fire();
         }
     }
     private void FixedUpdate()
     {
         if (transform.position.y < -30)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Health.Damage((int)(Health.MaxHealth * 0.3));
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-            Health.Damage(10);
-        }
-    }
-
-
 }
 

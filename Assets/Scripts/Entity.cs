@@ -19,4 +19,9 @@ public abstract class Entity : MonoBehaviour
         _inventory = GetComponent<InventoryManager>();
         _health = GetComponent<HealthManager>();
     }
+
+    public void Fire()
+    {
+        Inventory.CurrentWeaponManager.Fire(new FireContext(this, LevelManager.CurrentLevelManager.FindSurroundingTargets(this)));
+    }
 }

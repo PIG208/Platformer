@@ -10,6 +10,7 @@ public class HealthManager : MonoBehaviour
     public Slider HealthBar;
 
     public event Action<HealthManager> Die;
+    public event Action<HealthManager> Died;
 
     private bool isDead;
 
@@ -28,6 +29,7 @@ public class HealthManager : MonoBehaviour
         {
             Die?.Invoke(this);
             isDead = true;
+            Died?.Invoke(this);
         };
         UpdateHealthBar();
     }

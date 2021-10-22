@@ -687,6 +687,7 @@ MonoBehaviour:
   SwitchInterval: 0.22
   Preset: 1
   PickupText: {fileID: 8722614264801604848}
+  PickupEnabled: 0
 --- !u!114 &425946367
 MonoBehaviour:
   m_ObjectHideFlags: 0

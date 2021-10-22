@@ -7,7 +7,8 @@ public enum InventoryPreset
     Empty,
     Newbee,
     Gunner,
-    Missile
+    Missile,
+    Teeth
 }
 
 public static class InventoryPresets
@@ -31,6 +32,9 @@ public static class InventoryPresets
                 Gun launcher = WeaponPrototype.GetWeapon<Gun>(WeaponRegistry.Rifle);
                 launcher.RegisterModifier(new MissileModifier());
                 items.Add(launcher);
+                break;
+            case InventoryPreset.Teeth:
+                items.Add(WeaponPrototype.GetWeapon(WeaponRegistry.Bite));
                 break;
         }
         return items;

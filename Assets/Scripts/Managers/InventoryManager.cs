@@ -16,6 +16,7 @@ public class InventoryManager : MonoBehaviour
     [System.NonSerialized]
     public List<CollectableManager> SurroundingCollectables = new List<CollectableManager>();
     public Text PickupText;
+    public bool PickupEnabled = false;
 
     private int _currentWeaponIndex = -1;
     private float _lastSwitch;
