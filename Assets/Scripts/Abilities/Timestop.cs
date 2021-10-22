@@ -6,9 +6,9 @@ public class Timestop : MonoBehaviour
 {
     bool frozen = false;
 
-    void Update()
+    public void HandleToggle()
     {
-        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton4) && !frozen)
+        if (!frozen)
         {
             frozen = true;
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -19,8 +19,8 @@ public class Timestop : MonoBehaviour
                 enemy.GetComponent<Animator>().enabled = false;
                 enemy.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             }
-        } 
-        else if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton4) && frozen)
+        }
+        else
         {
             frozen = false;
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -28,7 +28,7 @@ public class Timestop : MonoBehaviour
             {
                 enemy.GetComponent<MovementManager>().enabled = true;
                 enemy.GetComponent<AIManager>().enabled = true;
-                enemy.GetComponent<Animator>().enabled =  true;
+                enemy.GetComponent<Animator>().enabled = true;
                 enemy.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             }
         }

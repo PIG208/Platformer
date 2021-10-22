@@ -6,7 +6,7 @@ public class Dash : MonoBehaviour
 {
 
     Rigidbody2D _rigidbody;
-    MovementManager  _movementmanager;
+    MovementManager _movementmanager;
     private bool isDashing = false;
     public int dashSpeed = 30;
     public float dashCooldown = 1f;
@@ -17,15 +17,16 @@ public class Dash : MonoBehaviour
         _movementmanager = GetComponent<MovementManager>();
     }
 
-    void Update()
+    public void HandleDash()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton5) && !isDashing){
-            isDashing = true;
-            StartCoroutine(dash());
-        }
+        if (isDashing) return;
+
+        isDashing = true;
+        StartCoroutine(dash());
     }
 
-    IEnumerator dash(){
+    IEnumerator dash()
+    {
         _rigidbody.AddForce(new Vector2(5 * _movementmanager.Direction, 0), ForceMode2D.Impulse);
         yield return new WaitForSeconds(dashCooldown);
         isDashing = false;

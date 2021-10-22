@@ -57,6 +57,22 @@ public class @InputControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""15b62e71-e239-4fb4-838c-a7816c2aa009"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Timestop"",
+                    ""type"": ""Button"",
+                    ""id"": ""6157be32-a3ea-4b51-940c-fc9d3e802034"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -356,6 +372,39 @@ public class @InputControls : IInputActionCollection, IDisposable
                     ""action"": ""Pickup"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b80a87b0-e9d4-4a83-bde9-3d0a29c25476"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""87c0e07c-590a-4421-8864-50e8f7f04511"",
+                    ""path"": ""<Joystick>/stick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""024a6601-9141-4637-b7cd-84cc318886ef"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Timestop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -397,6 +446,8 @@ public class @InputControls : IInputActionCollection, IDisposable
         m_Player_SwitchWeapon = m_Player.FindAction("SwitchWeapon", throwIfNotFound: true);
         m_Player_SwitchWeapon2 = m_Player.FindAction("SwitchWeapon2", throwIfNotFound: true);
         m_Player_Pickup = m_Player.FindAction("Pickup", throwIfNotFound: true);
+        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_Timestop = m_Player.FindAction("Timestop", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -451,6 +502,8 @@ public class @InputControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_SwitchWeapon;
     private readonly InputAction m_Player_SwitchWeapon2;
     private readonly InputAction m_Player_Pickup;
+    private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_Timestop;
     public struct PlayerActions
     {
         private @InputControls m_Wrapper;
@@ -460,6 +513,8 @@ public class @InputControls : IInputActionCollection, IDisposable
         public InputAction @SwitchWeapon => m_Wrapper.m_Player_SwitchWeapon;
         public InputAction @SwitchWeapon2 => m_Wrapper.m_Player_SwitchWeapon2;
         public InputAction @Pickup => m_Wrapper.m_Player_Pickup;
+        public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @Timestop => m_Wrapper.m_Player_Timestop;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -484,6 +539,12 @@ public class @InputControls : IInputActionCollection, IDisposable
                 @Pickup.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickup;
                 @Pickup.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickup;
                 @Pickup.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickup;
+                @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Timestop.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTimestop;
+                @Timestop.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTimestop;
+                @Timestop.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTimestop;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -503,6 +564,12 @@ public class @InputControls : IInputActionCollection, IDisposable
                 @Pickup.started += instance.OnPickup;
                 @Pickup.performed += instance.OnPickup;
                 @Pickup.canceled += instance.OnPickup;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
+                @Timestop.started += instance.OnTimestop;
+                @Timestop.performed += instance.OnTimestop;
+                @Timestop.canceled += instance.OnTimestop;
             }
         }
     }
@@ -532,5 +599,7 @@ public class @InputControls : IInputActionCollection, IDisposable
         void OnSwitchWeapon(InputAction.CallbackContext context);
         void OnSwitchWeapon2(InputAction.CallbackContext context);
         void OnPickup(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
+        void OnTimestop(InputAction.CallbackContext context);
     }
 }

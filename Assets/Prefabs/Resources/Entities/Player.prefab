@@ -452,6 +452,8 @@ GameObject:
   - component: {fileID: 3507698517451324299}
   - component: {fileID: 8781013566135023358}
   - component: {fileID: 425946367}
+  - component: {fileID: 6335813693149202953}
+  - component: {fileID: -439047191534295948}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -644,6 +646,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3df2c0d5-f8c4-4a2f-8830-489e717348a2
     m_ActionName: Player/Pickup[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8357742388598187831}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 15b62e71-e239-4fb4-838c-a7816c2aa009
+    m_ActionName: Player/Dash[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8357742388598187831}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnTimestop
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6157be32-a3ea-4b51-940c-fc9d3e802034
+    m_ActionName: Player/Timestop[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard and Mouse
   m_DefaultActionMap: Player
@@ -700,7 +734,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a250b168767b9b48b09c1ba63268050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 88888
   HealthBar: {fileID: 0}
   DeathSound: {fileID: 0}
   AudioSource: {fileID: 0}
+--- !u!114 &6335813693149202953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8887682791931727684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67141b840bfa2b447b14ce7724283b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashSpeed: 30
+  dashCooldown: 5
+--- !u!114 &-439047191534295948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8887682791931727684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb00abf3a9f862d47a4c531814c0c508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -63,6 +63,16 @@ public class Player : Entity, InputControls.IPlayerActions, IMovable
         Inventory.SwitchWeapon(int.Parse(cb.control.name) - 1);
     }
 
+    public void OnDash(InputAction.CallbackContext cb)
+    {
+        GetComponent<Dash>().HandleDash();
+    }
+
+    public void OnTimestop(InputAction.CallbackContext cb)
+    {
+        GetComponent<Timestop>().HandleToggle();
+    }
+
     public void HandleDied(HealthManager healthManager)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
