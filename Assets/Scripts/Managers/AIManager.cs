@@ -26,7 +26,7 @@ public class AIManager : MonoBehaviour
         _entity.Movement.Move(Vector2.zero);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (disabled) return;
         if (_attackTimeout > 0) _attackTimeout -= Time.deltaTime;

@@ -566,7 +566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 4
-  JumpForce: 60
+  JumpForce: 400
   MaxJumps: 1
   GroundSphere: {fileID: 9002132591510653294}
   GroundSphereRadius: 0.1
